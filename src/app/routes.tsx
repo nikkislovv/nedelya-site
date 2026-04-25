@@ -12,8 +12,5 @@ export const router = createBrowserRouter(
       path: '/privacy',
       Component: PrivacyPage,
     },
-  ],
-  {
-    basename: '/nedelya-site/',
-  }
+  ]
 );
