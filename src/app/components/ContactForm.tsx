@@ -39,6 +39,7 @@ export function ContactForm() {
   const [status, setStatus]       = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [attachedFile, setAttachedFile] = useState<string | null>(null);
+  const [fileObj, setFileObj]           = useState<File | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const set = (field: keyof FormState, value: string | boolean) =>
@@ -72,19 +73,24 @@ export function ContactForm() {
 
     setStatus('loading');
     try {
-      /* Здесь интегрируется EmailJS:
-         await emailjs.send('SERVICE_ID', 'TEMPLATE_ID', {
-           from_name:    form.name,
-           from_email:   form.email,
-           phone:        form.phone,
-           project_type: form.projectType,
-           message:      form.comment,
-         }, 'PUBLIC_KEY');
-      */
-      await new Promise(r => setTimeout(r, 1600));
+      const data = new FormData();
+      data.append('access_key', '43466d75-a865-4363-9434-7d93a2c7ddad');
+      data.append('cc_email', 'nikitakislov368@gmail.com,nikvikprg@gmail.com');
+      data.append('subject', `Новая заявка от ${form.name} — ${form.projectType}`);
+      data.append('name', form.name);
+      data.append('email', form.email);
+      data.append('phone', form.phone || '—');
+      data.append('project_type', form.projectType);
+      data.append('message', form.comment || '—');
+
+      const res  = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
+      const json = await res.json();
+      if (!res.ok || !json.success) throw new Error(json.message);
+
       setStatus('success');
       setForm(INITIAL);
       setAttachedFile(null);
+      setFileObj(null);
     } catch {
       setStatus('error');
     }
@@ -248,8 +254,9 @@ export function ContactForm() {
                   className="nd-file-input"
                   accept=".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg"
                   onChange={e => {
-                    const file = e.target.files?.[0];
+                    const file = e.target.files?.[0] ?? null;
                     setAttachedFile(file ? file.name : null);
+                    setFileObj(file);
                   }}
                 />
                 {attachedFile ? (
