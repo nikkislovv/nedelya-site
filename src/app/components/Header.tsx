@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import logoImg from "../../imports/Logo.png";
+import logoImg from "../../imports/logo_embedded_transparent.svg";
 
 const NAV_LINKS = [
   { label: "Услуги", href: "#services" },

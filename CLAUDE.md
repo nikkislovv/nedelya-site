@@ -34,9 +34,9 @@ Route `/privacy` — privacy policy page.
 - **Do not commit** — the developer handles all git commits.
 - **Reuse before creating** — before implementing any UI element (modal, list item, button, input, etc.), at least search `src/components/` for existing primitives. Prefer composition of existing components over writing new ones from scratch.
 
-## Commands
+ ## Running the code
 
-```bash
-npm run dev      # local dev server
-npm run build    # production build → dist/
-```
+  Run `npm i` to install the dependencies.
+
+  Run `npm run dev` to start the development server.
+  "# nedelya-site" 

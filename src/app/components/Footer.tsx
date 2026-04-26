@@ -1,4 +1,4 @@
-import logoImg from "../../imports/Logo.png";
+import logoImg from "../../imports/logo_embedded_transparent.svg";
 
 export function Footer() {
   const year = new Date().getFullYear();
