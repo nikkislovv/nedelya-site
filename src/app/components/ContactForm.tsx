@@ -38,8 +38,6 @@ export function ContactForm() {
   const [errors, setErrors]       = useState<Errors>({});
   const [status, setStatus]       = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [attachedFile, setAttachedFile] = useState<string | null>(null);
-  const [fileObj, setFileObj]           = useState<File | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const set = (field: keyof FormState, value: string | boolean) =>
@@ -89,8 +87,6 @@ export function ContactForm() {
 
       setStatus('success');
       setForm(INITIAL);
-      setAttachedFile(null);
-      setFileObj(null);
     } catch {
       setStatus('error');
     }
@@ -243,49 +239,6 @@ export function ContactForm() {
                 value={form.comment}
                 onChange={e => set('comment', e.target.value)}
               />
-            </div>
-
-            {/* Прикрепить документ */}
-            <div className="nd-field">
-              <label className="nd-field__label">Прикрепить документ</label>
-              <label className="nd-file-upload">
-                <input
-                  type="file"
-                  className="nd-file-input"
-                  accept=".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg"
-                  onChange={e => {
-                    const file = e.target.files?.[0] ?? null;
-                    setAttachedFile(file ? file.name : null);
-                    setFileObj(file);
-                  }}
-                />
-                {attachedFile ? (
-                  <div className="nd-file-upload__inner nd-file-upload__inner--filled">
-                    <span className="nd-file-upload__icon-wrap nd-file-upload__icon-wrap--filled">
-                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path d="M4 10l5 5 7-8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </span>
-                    <div>
-                      <span className="nd-file-upload__filename">{attachedFile}</span>
-                      <span className="nd-file-upload__hint">Нажмите, чтобы заменить</span>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="nd-file-upload__inner">
-                    <span className="nd-file-upload__icon-wrap">
-                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path d="M10 13V7M10 7L7.5 9.5M10 7L12.5 9.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-                        <path d="M3.5 13.5A3.5 3.5 0 005 17h10a3.5 3.5 0 001.5-6.67V10a5 5 0 00-9.9-.8A3.5 3.5 0 003.5 13.5z" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </span>
-                    <div>
-                      <span className="nd-file-upload__text">Перетащите файл или нажмите для выбора</span>
-                      <span className="nd-file-upload__hint">PDF, DOC, DOCX, TXT, PNG, JPG — до 10 МБ</span>
-                    </div>
-                  </div>
-                )}
-              </label>
             </div>
 
             {/* Согласие */}
