@@ -18,6 +18,33 @@ export function Footer() {
               Быстрый запуск простого сайта за 4–10 дней по фиксированной цене.
               Без долгого ТЗ и ненужных сложностей.
             </p>
+
+            <div className="nd-footer__socials">
+              <a
+                href="https://t.me/nedelya_site"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nd-soc"
+                aria-label="Telegram"
+              >✈️</a>
+              <a
+                href="https://wa.me/375000000000"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nd-soc"
+                aria-label="WhatsApp"
+              >💬</a>
+              <a
+                href="viber://chat?number=%2B375000000000"
+                className="nd-soc"
+                aria-label="Viber"
+              >📱</a>
+              <a
+                href="mailto:hello@nedelya.site"
+                className="nd-soc"
+                aria-label="Email"
+              >✉️</a>
+            </div>
           </div>
 
           {/* Contacts */}

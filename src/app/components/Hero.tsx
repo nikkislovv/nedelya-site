@@ -3,6 +3,11 @@ export function Hero() {
     <section className="nd-hero" id="hero">
       <div className="nd-container nd-hero__inner">
 
+        {/* Big centered wordmark — hero centerpiece (like the reference) */}
+        <div className="nd-hero__wordmark" aria-hidden="true">nedelya</div>
+
+        <div className="nd-hero__stage">
+
         {/* ---- Content ---- */}
         <div className="nd-hero__content">
           <div className="nd-hero__tag">✦ Быстрый запуск сайта</div>
@@ -28,41 +33,106 @@ export function Hero() {
           </div>
         </div>
 
-        {/* ---- Stylized device mockups ---- */}
+        {/* ---- Animated rocket visual ---- */}
         <div className="nd-hero__visual" aria-hidden="true">
+          <div className="nd-rocket-scene">
+            {/* Ambient glow */}
+            <div className="nd-rocket-glow" />
 
-          {/* Laptop mockup — behind, larger */}
-          <div className="nd-mockup-laptop">
-            <div className="nd-mockup-laptop__base">
-              <div className="nd-mockup-laptop__screen">
-                {/* Wireframe content */}
-                <div className="nd-mockup-laptop__header" />
-                <div className="nd-mockup-laptop__content">
-                  <div className="nd-wireframe-line nd-wireframe-line--full" />
-                  <div className="nd-wireframe-line nd-wireframe-line--80" />
-                  <div className="nd-wireframe-line nd-wireframe-line--60" />
-                  <div className="nd-wireframe-block" />
-                  <div className="nd-wireframe-btn" />
-                </div>
-              </div>
-              <div className="nd-mockup-laptop__keyboard" />
-            </div>
-          </div>
+            {/* Orbiting rings with satellites */}
+            <div className="nd-rocket-orbit nd-rocket-orbit--1" />
+            <div className="nd-rocket-orbit nd-rocket-orbit--2" />
 
-          {/* Phone mockup — in front, smaller */}
-          <div className="nd-mockup-phone">
-            <div className="nd-mockup-phone__body">
-              <div className="nd-mockup-phone__screen">
-                {/* Wireframe content */}
-                <div className="nd-mockup-phone__header" />
-                <div className="nd-mockup-phone__content">
-                  <div className="nd-wireframe-line nd-wireframe-line--full" />
-                  <div className="nd-wireframe-line nd-wireframe-line--70" />
-                  <div className="nd-wireframe-block nd-wireframe-block--small" />
-                  <div className="nd-wireframe-btn nd-wireframe-btn--small" />
+            {/* Rocket */}
+            <div className="nd-rocket">
+              <svg className="nd-rocket__svg" viewBox="0 0 240 440" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="rk-body" x1="0" y1="0" x2="1" y2="0.4">
+                    <stop offset="0" stopColor="#FFFFFF" />
+                    <stop offset="0.55" stopColor="#EAEFF6" />
+                    <stop offset="1" stopColor="#BCC6D6" />
+                  </linearGradient>
+                  <linearGradient id="rk-cone" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stopColor="#FFAE6E" />
+                    <stop offset="1" stopColor="#F23E26" />
+                  </linearGradient>
+                  <radialGradient id="rk-win" cx="0.38" cy="0.32" r="0.9">
+                    <stop offset="0" stopColor="#DFF6FF" />
+                    <stop offset="0.45" stopColor="#49B4D4" />
+                    <stop offset="1" stopColor="#1C5C82" />
+                  </radialGradient>
+                  <linearGradient id="rk-flame" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stopColor="#FFE8A6" />
+                    <stop offset="0.45" stopColor="#FFB23E" />
+                    <stop offset="1" stopColor="#F2542B" />
+                  </linearGradient>
+                </defs>
+
+                {/* Flame */}
+                <g className="nd-rocket__flame">
+                  <path d="M120 286 C 88 332, 96 388, 120 416 C 144 388, 152 332, 120 286 Z" fill="url(#rk-flame)" />
+                  <path d="M120 298 C 103 328, 107 364, 120 386 C 133 364, 137 328, 120 298 Z" fill="#FFC24D" />
+                  <path d="M120 310 C 111 332, 114 358, 120 374 C 126 358, 129 332, 120 310 Z" fill="#FFF3C8" />
+                </g>
+
+                {/* Fins */}
+                <path d="M78 238 C 46 260, 44 300, 62 318 L88 282 C 83 267, 80 252, 78 238 Z" fill="url(#rk-cone)" />
+                <path d="M162 238 C 194 260, 196 300, 178 318 L152 282 C 157 267, 160 252, 162 238 Z" fill="url(#rk-cone)" />
+
+                {/* Nozzle */}
+                <path d="M99 260 L141 260 L133 290 L107 290 Z" fill="#5E6A80" />
+                <rect x="103" y="255" width="34" height="9" rx="4" fill="#7E8AA0" />
+
+                {/* Body */}
+                <path d="M76 128 C 64 180, 64 226, 78 264 C 104 282, 136 282, 162 264 C 176 226, 176 180, 164 128 C 138 116, 102 116, 76 128 Z" fill="url(#rk-body)" />
+
+                {/* Nose cone */}
+                <path d="M120 28 C 146 60, 160 98, 164 132 C 138 120, 102 120, 76 132 C 80 98, 94 60, 120 28 Z" fill="url(#rk-cone)" />
+                <path d="M120 28 C 132 46, 141 70, 147 96 C 138 92, 128 90, 120 90 Z" fill="#FFFFFF" opacity="0.18" />
+
+                {/* Coral band */}
+                <path d="M78 240 C 104 254, 136 254, 162 240 L160 260 C 136 270, 104 270, 80 260 Z" fill="url(#rk-cone)" opacity="0.92" />
+
+                {/* Window */}
+                <circle cx="120" cy="174" r="30" fill="url(#rk-win)" />
+                <circle cx="120" cy="174" r="30" fill="none" stroke="#AEBCCE" strokeWidth="6" />
+                <circle cx="120" cy="174" r="30" fill="none" stroke="#FFFFFF" strokeWidth="2" opacity="0.4" />
+                <circle cx="109" cy="163" r="8" fill="#FFFFFF" opacity="0.7" />
+
+                {/* Rivets */}
+                <circle cx="120" cy="232" r="2.4" fill="#AAB4C4" />
+                <circle cx="104" cy="234" r="2.4" fill="#AAB4C4" />
+                <circle cx="136" cy="234" r="2.4" fill="#AAB4C4" />
+
+                {/* Glossy highlight */}
+                <path d="M92 138 C 83 184, 83 224, 92 258" stroke="#FFFFFF" strokeWidth="7" strokeLinecap="round" opacity="0.5" fill="none" />
+              </svg>
+            </div>
+
+            {/* Launched site mockup — "rocket = fast site launch" */}
+            <div className="nd-launch-card">
+              <div className="nd-launch-card__bar">
+                <span className="nd-launch-dot" />
+                <span className="nd-launch-dot" />
+                <span className="nd-launch-dot" />
+                <span className="nd-launch-card__url" />
+              </div>
+              <div className="nd-launch-card__body">
+                <div className="nd-launch-card__col">
+                  <div className="nd-launch-card__title">Запустим<br />ваш сайт</div>
+                  <div className="nd-launch-line nd-launch-line--s" />
+                  <div className="nd-launch-btn">Обсудить →</div>
                 </div>
+                <div className="nd-launch-card__img" />
               </div>
             </div>
+
+            {/* Rising sparks */}
+            <span className="nd-spark nd-spark--1" />
+            <span className="nd-spark nd-spark--2" />
+            <span className="nd-spark nd-spark--3" />
+            <span className="nd-spark nd-spark--4" />
+            <span className="nd-spark nd-spark--5" />
           </div>
 
           {/* Status badge — glassmorphism */}
@@ -74,6 +144,8 @@ export function Hero() {
             </div>
           </div>
         </div>
+        </div>
+        {/* /stage */}
 
       </div>
 
