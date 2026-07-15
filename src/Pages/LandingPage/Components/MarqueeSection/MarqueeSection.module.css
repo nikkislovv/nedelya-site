@@ -1,0 +1,60 @@
+/* Coloured running band — modelled on the reference PartnersCarousel */
+.marquee {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: 36px 0;
+  background: linear-gradient(90deg, #c0431f 0%, #435472 50%, #233044 100%);
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  will-change: transform;
+  animation: nd-marquee 30s linear infinite;
+}
+
+@keyframes nd-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.item {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 2.2vw, 28px);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #fff;
+  white-space: nowrap;
+  padding: 0 4px;
+}
+.sep {
+  color: rgba(255, 255, 255, 0.58);
+  font-size: clamp(13px, 1.4vw, 18px);
+  margin: 0 26px;
+  flex-shrink: 0;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .marquee {
+    padding: 26px 0;
+  }
+  .item {
+    font-size: clamp(17px, 4.6vw, 22px);
+  }
+  .sep {
+    margin: 0 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
+}

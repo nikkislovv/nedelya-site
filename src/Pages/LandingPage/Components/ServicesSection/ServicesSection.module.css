@@ -1,0 +1,413 @@
+.services {
+  position: relative;
+  padding: 74px 0 72px;
+  overflow: hidden;
+}
+
+/* Soft drifting glows (premium ambience) */
+.glow {
+  --sz: 380px;
+  position: absolute;
+  z-index: 0;
+  width: var(--sz);
+  height: var(--sz);
+  border-radius: 50%;
+  filter: blur(calc(var(--sz) / 3));
+  opacity: 0.34;
+  pointer-events: none;
+}
+.orangeGlow {
+  background: var(--accent);
+  top: 4%;
+  left: -6%;
+  animation: nd-svc-glow-a 34s ease-in-out infinite;
+}
+.blueGlow {
+  background: #5686e0;
+  bottom: 6%;
+  right: -6%;
+  animation: nd-svc-glow-b 40s ease-in-out infinite;
+}
+@keyframes nd-svc-glow-a {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(50px, 36px); }
+}
+@keyframes nd-svc-glow-b {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-46px, -30px); }
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--pad-x);
+}
+
+/* ---------- Showcase grid ---------- */
+.showcase {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-bottom: 40px;
+}
+
+.card {
+  position: relative;
+  cursor: pointer;
+  border-radius: var(--radius-lg);
+  padding: 20px 20px 22px;
+  background: var(--card-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+  /* visible so the 3D badge can pop above the card edge */
+  overflow: visible;
+  transition: transform var(--dur) var(--ease), border-color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+/* per-service accent top line */
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--svc);
+  opacity: 0.5;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  transition: opacity var(--dur) var(--ease);
+}
+.card:hover {
+  transform: translateY(-8px);
+  border-color: color-mix(in srgb, var(--svc) 50%, transparent);
+  box-shadow: var(--shadow-hover), 0 0 34px color-mix(in srgb, var(--svc) 26%, transparent);
+}
+.card:hover::before {
+  opacity: 1;
+}
+
+/* ---------- 3D badge (the recognizable "object") ---------- */
+.icon {
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  z-index: 4;
+  width: 66px;
+  height: 66px;
+  border-radius: 19px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    150deg,
+    color-mix(in srgb, var(--svc) 72%, #fff 28%) 0%,
+    var(--svc) 52%,
+    color-mix(in srgb, var(--svc) 66%, #000 34%) 100%
+  );
+  box-shadow:
+    0 16px 32px color-mix(in srgb, var(--svc) 46%, transparent),
+    inset 0 2px 0 rgba(255, 255, 255, 0.42),
+    inset 0 -7px 15px rgba(0, 0, 0, 0.18);
+  transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s;
+}
+.icon svg {
+  width: 36px;
+  height: 36px;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.22));
+}
+.card:hover .icon {
+  transform: translateY(-12px) scale(1.09) rotate(-5deg);
+  box-shadow:
+    0 26px 46px color-mix(in srgb, var(--svc) 56%, transparent),
+    inset 0 2px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -7px 15px rgba(0, 0, 0, 0.18);
+}
+
+/* Mockup that "comes to life" on hover */
+.mockupWrap {
+  position: relative;
+  margin-bottom: 16px;
+  border-radius: 14px;
+  opacity: 0.86;
+  transform: translateY(0) scale(0.985);
+  transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s;
+}
+.mockupWrap::after {
+  content: "";
+  position: absolute;
+  inset: -6% -4% -14%;
+  z-index: -1;
+  border-radius: 20px;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--svc) 42%, transparent), transparent 78%);
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+.card:hover .mockupWrap {
+  opacity: 1;
+  transform: translateY(-10px) scale(1.03);
+}
+.card:hover .mockupWrap::after {
+  opacity: 1;
+}
+
+/* Label */
+.name {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+  margin-bottom: 3px;
+}
+.tagline {
+  font-size: 13px;
+  color: var(--text-sec);
+  margin-bottom: 16px;
+}
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.price {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--svc);
+}
+.more {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--svc);
+  opacity: 0.55;
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+.card:hover .more {
+  opacity: 1;
+  transform: translateX(3px);
+}
+
+/* ---------- Addons footnote ---------- */
+.addonsNote {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-top: 4px;
+  padding: 18px 24px;
+  background: var(--bg-alt);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-soft);
+}
+.addonsNoteLabel {
+  font-size: 13px;
+  color: var(--text-sec);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.asterisk {
+  color: var(--accent-soft);
+  font-weight: 700;
+  margin-right: 4px;
+}
+.addons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+.addon {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 16px;
+  background: var(--panel);
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  font-size: 13px;
+  white-space: nowrap;
+}
+.addonLbl {
+  color: var(--text-sec);
+}
+.addonPrice {
+  font-weight: 700;
+  color: var(--accent-soft);
+}
+
+/* ---------- Custom CTA block ---------- */
+.custom {
+  margin-top: 44px;
+  padding: 40px 44px;
+  background: linear-gradient(135deg, #ef5e2c 0%, #dc4a20 52%, #c53f1a 100%);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 22px 54px rgba(120, 36, 16, 0.42);
+}
+.custom::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-radial-gradient(circle at 88% 18%, transparent 0 30px, rgba(255, 255, 255, 0.06) 30px 31px);
+  pointer-events: none;
+}
+/* grain texture that softens the flat coral (reference: Noise soft-light) */
+.custom::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 140px 140px;
+  mix-blend-mode: soft-light;
+  opacity: 0.55;
+  pointer-events: none;
+}
+.customText {
+  position: relative;
+  z-index: 1;
+}
+.customTitle {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.customDesc {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.6;
+  max-width: 520px;
+}
+.customBtn {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 34px;
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  background: #fff;
+  color: var(--accent-2);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.customBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.28);
+}
+
+/* CTA with radar pings that emanate from the button on hover */
+.ctaWrap {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  display: inline-flex;
+}
+.ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 100px;
+  border: 2px solid rgba(255, 201, 173, 0.92);
+  box-shadow: 0 0 10px rgba(255, 150, 110, 0.55);
+  opacity: 0;
+  pointer-events: none;
+}
+.custom:hover .ring {
+  animation: nd-ping 1.9s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+.custom:hover .ring:nth-child(2) {
+  animation-delay: 0.95s;
+}
+@keyframes nd-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  70% {
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
+.arrow {
+  display: inline-block;
+  transition: transform var(--dur) var(--ease);
+}
+.custom:hover .arrow {
+  transform: translateX(5px);
+}
+.custom:hover .customBtn {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.32), 0 0 0 5px rgba(255, 255, 255, 0.14);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+  .showcase {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .services {
+    padding: 72px 0;
+  }
+  .showcase {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  /* no hover on touch — show mockups at full brightness */
+  .mockupWrap {
+    opacity: 1;
+    transform: none;
+  }
+  .card:hover .mockupWrap {
+    transform: none;
+  }
+  .custom {
+    padding: 28px 22px;
+  }
+}
+@media (max-width: 480px) {
+  .ctaWrap {
+    width: 100%;
+  }
+  .customBtn {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orangeGlow,
+  .blueGlow,
+  .custom:hover .ring {
+    animation: none;
+  }
+  .mockupWrap {
+    transition: none;
+  }
+}

@@ -14,4 +14,10 @@ export default defineConfig({
   base: '/',
   // File types to support raw imports. Never add .css, .tsx, or .ts files to this.
   assetsInclude: ['**/*.svg', '**/*.csv'],
+  css: {
+    // *.module.css → access hashed classes as camelCase in JS (like the reference)
+    modules: {
+      localsConvention: 'camelCaseOnly',
+    },
+  },
 })

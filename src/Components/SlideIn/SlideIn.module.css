@@ -1,0 +1,41 @@
+.root {
+  opacity: 0;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.top { transform: translateY(-28px); }
+.bottom { transform: translateY(28px); }
+.left { transform: translateX(-32px); }
+.right { transform: translateX(32px); }
+
+.visible.top { animation-name: nd-slide-top; }
+.visible.bottom { animation-name: nd-slide-bottom; }
+.visible.left { animation-name: nd-slide-left; }
+.visible.right { animation-name: nd-slide-right; }
+
+@keyframes nd-slide-top {
+  from { opacity: 0; transform: translateY(-28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes nd-slide-bottom {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes nd-slide-left {
+  from { opacity: 0; transform: translateX(-32px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes nd-slide-right {
+  from { opacity: 0; transform: translateX(32px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}

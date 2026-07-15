@@ -1,0 +1,52 @@
+/* ============================================================
+   Design tokens (nedelya) — CSS custom properties
+   ============================================================ */
+:root {
+  /* Accent — vivid coral-orange that pops on dark */
+  --accent:        #FF6A3D;
+  --accent-2:      #F23E26;
+  --accent-soft:   #FF9A6E;
+  --accent-grad:   linear-gradient(135deg, #FF8A4C 0%, #F23E26 100%);
+  --accent-hover:  #FF7A4F;
+  --accent-glow:   rgba(255, 96, 52, 0.42);
+
+  /* Dark atmospheric surfaces */
+  --bg:            #233044;
+  --bg-alt:        rgba(255, 255, 255, 0.03);
+  --panel:         rgba(255, 255, 255, 0.07);
+  --panel-2:       rgba(255, 255, 255, 0.1);
+  --card-bg:       rgba(255, 255, 255, 0.065);
+  --menu-bg:       #2B3A50;
+
+  --text-main:     #F1F4FA;
+  --text-sec:      #AAB4C6;
+  --text-mut:      #7C879C;
+  --border:        rgba(255, 255, 255, 0.12);
+  --border-soft:   rgba(255, 255, 255, 0.08);
+  --dark:          #18222F;
+  --white:         #FFFFFF;
+
+  --font-display: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body:    'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --radius-xs: 6px;
+  --radius-sm: 12px;
+  --radius-md: 18px;
+  --radius-lg: 26px;
+
+  --shadow-card:   0 10px 30px rgba(0, 0, 0, 0.35);
+  --shadow-hover:  0 22px 54px rgba(0, 0, 0, 0.5);
+  --shadow-header: 0 12px 40px rgba(0, 0, 0, 0.45);
+
+  --max-w:  1200px;
+  --pad-x:  24px;
+
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur:  0.25s;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --pad-x: 16px;
+  }
+}
