@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router';
-import LandingPage from './pages/LandingPage';
-import PrivacyPage from './pages/PrivacyPage';
+import LandingPage from '../Pages/LandingPage/LandingPage';
+import PrivacyPage from '../Pages/PrivacyPage/PrivacyPage';
 
 export const router = createBrowserRouter(
   [
