@@ -1,11 +1,1 @@
-
-  # Outsource
-
-  This is a code bundle for Outsource. The original project is available at https://www.figma.com/design/bUlXz4XlwQniH6bmmkgswH/Outsource.
-
-  ## Running the code
-
-  Run `npm i` to install the dependencies.
-
-  Run `npm run dev` to start the development server.
-  "# nedelya-site" 
+https://nedelya-site.net.by/
