@@ -1,1 +1,7 @@
 node_modules/
+dist/
+
+# local tooling, previews and references — never push to remote
+.preview/
+.claude/
+claude/
