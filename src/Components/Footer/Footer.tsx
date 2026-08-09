@@ -1,18 +1,27 @@
+import type { ComponentType } from "react";
 import { LogoMark } from "../Logo/LogoMark";
+import { TelegramIcon, WhatsappIcon, ViberIcon, EmailIcon } from "../BrandIcons/BrandIcons";
 import classes from "./Footer.module.css";
 
-const SOCIALS = [
-  { icon: "✈️", href: "https://t.me/nedelya_site", label: "Telegram", external: true },
-  { icon: "💬", href: "https://wa.me/375000000000", label: "WhatsApp", external: true },
-  { icon: "📱", href: "viber://chat?number=%2B375000000000", label: "Viber", external: false },
-  { icon: "✉️", href: "mailto:hello@nedelya.site", label: "Email", external: false },
+type TLink = {
+  Icon: ComponentType<{ className?: string }>;
+  href: string;
+  label: string;
+  external: boolean;
+};
+
+const SOCIALS: TLink[] = [
+  { Icon: TelegramIcon, href: "https://t.me/nedelya_site", label: "Telegram", external: true },
+  { Icon: WhatsappIcon, href: "https://wa.me/375000000000", label: "WhatsApp", external: true },
+  { Icon: ViberIcon, href: "viber://chat?number=%2B375000000000", label: "Viber", external: false },
+  { Icon: EmailIcon, href: "mailto:hello@nedelya.site", label: "Email", external: false },
 ];
 
-const CONTACTS = [
-  { icon: "✉️", href: "mailto:hello@nedelya.site", label: "hello@nedelya.site", external: false },
-  { icon: "✈️", href: "https://t.me/nedelya_site", label: "Telegram", external: true },
-  { icon: "📱", href: "viber://chat?number=%2B375000000000", label: "Viber", external: false },
-  { icon: "💬", href: "https://wa.me/375000000000", label: "WhatsApp", external: true },
+const CONTACTS: TLink[] = [
+  { Icon: EmailIcon, href: "mailto:hello@nedelya.site", label: "hello@nedelya.site", external: false },
+  { Icon: TelegramIcon, href: "https://t.me/nedelya_site", label: "Telegram", external: true },
+  { Icon: ViberIcon, href: "viber://chat?number=%2B375000000000", label: "Viber", external: false },
+  { Icon: WhatsappIcon, href: "https://wa.me/375000000000", label: "WhatsApp", external: true },
 ];
 
 const NAV = [
@@ -42,14 +51,14 @@ export function Footer() {
               </span>
             </a>
             <p className={classes.tagline}>
-              Быстрый запуск простого сайта за 4–10 дней по фиксированной цене. Без долгого ТЗ и
+              Быстрый запуск простого сайта за 4–7 дней по фиксированной цене. Без долгого ТЗ и
               ненужных сложностей.
             </p>
 
             <div className={classes.socials}>
               {SOCIALS.map((s) => (
                 <a key={s.label} href={s.href} className={classes.soc} aria-label={s.label} {...ext(s.external)}>
-                  {s.icon}
+                  <s.Icon className={classes.socSvg} />
                 </a>
               ))}
             </div>
@@ -61,7 +70,9 @@ export function Footer() {
             <div className={classes.links}>
               {CONTACTS.map((c) => (
                 <a key={c.label} href={c.href} className={classes.link} {...ext(c.external)}>
-                  <span className={classes.linkIcon}>{c.icon}</span>
+                  <span className={classes.linkIcon}>
+                    <c.Icon className={classes.linkIconSvg} />
+                  </span>
                   {c.label}
                 </a>
               ))}

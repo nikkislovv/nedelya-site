@@ -1,0 +1,416 @@
+/* ==========================================================
+   Repair niche — own art direction: navy + orange, bold sans,
+   utility/trust. Structurally distinct: callback form, price cards,
+   steps, sticky call bar.
+   ========================================================== */
+.site {
+  --navy: #0e2c4e;
+  --navy2: #12365e;
+  --light: #f2f5fa;
+  --card: #ffffff;
+  --ink: #0e2440;
+  --text: #eaf1f9;
+  --muted: #9db3cc;
+  --orange: #ff7a1a;
+  --orange2: #ff9440;
+  --orangeDeep: #e85d04;
+  --lineD: rgba(255, 255, 255, 0.12);
+  --lineL: #e4eaf2;
+  --sans: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  width: 100%;
+  border-radius: 22px;
+  overflow: hidden;
+  font-family: var(--sans);
+  color: var(--ink);
+}
+
+.heroWrap {
+  background:
+    radial-gradient(80% 60% at 88% -10%, rgba(255, 122, 26, 0.18), transparent 55%),
+    linear-gradient(180deg, var(--navy), #0b2340);
+  color: var(--text);
+  padding-bottom: 46px;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px clamp(20px, 3vw, 48px);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+.m {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, var(--orange2), var(--orangeDeep));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+.nav {
+  display: flex;
+  gap: clamp(18px, 2.2vw, 30px);
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 500;
+}
+.nav span:first-child {
+  color: #fff;
+}
+.headRight {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.phone {
+  font-size: 18px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+.btn {
+  font-family: var(--sans);
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  border-radius: 12px;
+}
+.btnOrg {
+  background: linear-gradient(135deg, var(--orange2), var(--orangeDeep));
+  color: #fff;
+  box-shadow: 0 10px 26px rgba(232, 93, 4, 0.36);
+}
+.headRight .btn {
+  padding: 12px 22px;
+  font-size: 14px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 44px;
+  padding: 44px clamp(20px, 3vw, 48px) 8px;
+  align-items: center;
+}
+.eyebrow {
+  display: inline-flex;
+  gap: 9px;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--orange2);
+  margin-bottom: 20px;
+}
+.eyebrow::before {
+  content: "";
+  width: 26px;
+  height: 2px;
+  background: var(--orange);
+}
+.h1 {
+  font-size: clamp(34px, 4.6vw, 54px);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin-bottom: 20px;
+}
+.h1 span {
+  color: var(--orange2);
+}
+.lead {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--muted);
+  max-width: 440px;
+  margin-bottom: 26px;
+}
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 22px;
+}
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #dfeaf6;
+}
+.ck {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 122, 26, 0.16);
+  color: var(--orange2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 12px;
+}
+
+/* callback card — signature element */
+.cb {
+  background: var(--card);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.4);
+}
+.cb h3 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.cb p {
+  font-size: 13px;
+  color: #6a7c92;
+  margin: 6px 0 18px;
+}
+.field {
+  display: block;
+  width: 100%;
+  border: 1.5px solid var(--lineL);
+  border-radius: 12px;
+  padding: 14px 15px;
+  font-size: 15px;
+  font-family: var(--sans);
+  color: var(--ink);
+  margin-bottom: 12px;
+  background: #fff;
+}
+.fieldSel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #5a6b80;
+}
+.cb .btnOrg {
+  width: 100%;
+  padding: 15px;
+  font-size: 15px;
+  border-radius: 12px;
+}
+.note {
+  font-size: 12px;
+  color: #8494a6;
+  text-align: center;
+  margin-top: 12px;
+}
+
+/* SERVICES + STEPS (light) */
+.services {
+  background: var(--light);
+  padding: 52px clamp(20px, 3vw, 48px);
+}
+.secHead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 26px;
+}
+.secHead h2 {
+  font-size: clamp(26px, 3.4vw, 34px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.secHead p {
+  font-size: 14px;
+  color: #6a7c92;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--lineL);
+  border-radius: 18px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.ic {
+  width: 48px;
+  height: 48px;
+  border-radius: 13px;
+  background: rgba(255, 122, 26, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card h4 {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--ink);
+}
+.d {
+  font-size: 13px;
+  color: #6a7c92;
+  line-height: 1.5;
+  flex: 1;
+}
+.price {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--ink);
+}
+.price span {
+  font-size: 13px;
+  color: #8494a6;
+  font-weight: 600;
+}
+
+.stepsSec {
+  background: var(--light);
+  padding: 8px clamp(20px, 3vw, 48px) 52px;
+}
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.step {
+  padding: 22px;
+  background: #fff;
+  border: 1px solid var(--lineL);
+  border-radius: 18px;
+}
+.n {
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  background: var(--navy);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 17px;
+  margin-bottom: 14px;
+}
+.stepOn .n {
+  background: linear-gradient(135deg, var(--orange2), var(--orangeDeep));
+}
+.step h4 {
+  font-size: 15.5px;
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.step p {
+  font-size: 13px;
+  color: #6a7c92;
+  line-height: 1.5;
+}
+
+/* STICKY CTA BAR */
+.sticky {
+  position: sticky;
+  bottom: 0;
+  background: linear-gradient(90deg, var(--navy2), var(--navy));
+  border-top: 1px solid var(--lineD);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px clamp(20px, 3vw, 48px);
+  color: #fff;
+}
+.stickyL b {
+  font-size: 18px;
+  font-weight: 800;
+  display: block;
+}
+.stickyL span {
+  font-size: 13px;
+  color: var(--muted);
+}
+.stickyR {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.stickyR .ph {
+  font-size: 20px;
+  font-weight: 800;
+}
+.stickyR .btnOrg {
+  padding: 14px 28px;
+  font-size: 15px;
+}
+
+@media (max-width: 860px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+  .nav {
+    display: none;
+  }
+  .cards,
+  .steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .headRight .phone {
+    display: none;
+  }
+  .cards,
+  .steps {
+    grid-template-columns: 1fr;
+  }
+  .sticky {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .stickyR .ph {
+    display: none;
+  }
+}
+
+/* ---------------- Hover vignette (composition) placement ---------------- */
+.sceneSvg {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 16px 22px rgba(0, 0, 0, 0.55));
+}
+.sceneDrill {
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  width: 44%;
+  z-index: 2;
+}
+.sceneWrench {
+  position: absolute;
+  left: 3%;
+  bottom: 0;
+  width: 15%;
+  z-index: 1;
+}
+.sceneFaucet {
+  position: absolute;
+  right: 4%;
+  bottom: 2%;
+  width: 22%;
+  z-index: 3;
+}

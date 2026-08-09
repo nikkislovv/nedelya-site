@@ -1,0 +1,265 @@
+/* Gallery of niche tiles that expand into full concepts (Framer Motion). */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* ---- Unified dark-glass tile (our brand); niche palette lives inside the concept ---- */
+.tile {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 340px;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 22px;
+  /* composition pops out of the frame on hover */
+  overflow: visible;
+  background: var(--card-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.tile:hover {
+  border-color: color-mix(in srgb, var(--niche-accent) 45%, transparent);
+  box-shadow: var(--shadow-hover), 0 0 30px color-mix(in srgb, var(--niche-accent) 18%, transparent);
+}
+.tile:focus-visible {
+  box-shadow: var(--shadow-card), 0 0 0 3px color-mix(in srgb, var(--niche-accent) 55%, transparent);
+}
+
+/* big ghost index — the calm rest state; fades as the scene reveals */
+.ghostIndex {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-size: 76px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: color-mix(in srgb, var(--niche-accent) 22%, transparent);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  pointer-events: none;
+}
+.tile:hover .ghostIndex {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+
+/* accent glow that blooms behind the composition */
+.glow {
+  position: absolute;
+  z-index: 0;
+  left: 50%;
+  top: 26%;
+  width: 82%;
+  height: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--niche-accent) 55%, transparent), transparent 72%);
+  filter: blur(6px);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.tile:hover .glow {
+  opacity: 1;
+}
+
+/* the composition layer (chair + lamp + plant live here, absolute) */
+.scene {
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  top: 4%;
+  height: 55%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ---- Name lockup (the designed rest state) ---- */
+.nameLock {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 22px;
+  z-index: 3;
+}
+/* soft scrim so the composition reads cleanly above the name */
+.nameLock::before {
+  content: "";
+  position: absolute;
+  left: -24px;
+  right: -24px;
+  bottom: -22px;
+  top: -26px;
+  z-index: -1;
+  border-radius: 0 0 22px 22px;
+  background: linear-gradient(to top, color-mix(in srgb, var(--bg) 82%, transparent) 55%, transparent);
+  pointer-events: none;
+}
+.eyebrow {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-mut);
+  margin-bottom: 8px;
+}
+.name {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  color: var(--text-main);
+  line-height: 1.05;
+}
+.nameAccent {
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--niche-accent);
+}
+.rule {
+  display: block;
+  height: 2px;
+  width: 34px;
+  margin-top: 14px;
+  border-radius: 2px;
+  background: var(--niche-accent);
+  transition: width 0.35s var(--ease);
+}
+.tile:hover .rule {
+  width: 66px;
+}
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--niche-accent);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.tile:hover .cta {
+  opacity: 1;
+  transform: translateY(0);
+}
+.arrow {
+  transition: transform 0.25s ease;
+}
+.tile:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* ---- Expanded concept overlay ---- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(12px, 3vw, 40px);
+}
+.backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(6, 8, 12, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.modal {
+  position: relative;
+  z-index: 1;
+  width: min(1120px, 100%);
+  max-height: 92vh;
+  overflow-y: auto;
+  border-radius: 22px;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
+}
+/* neutral viewer chrome — works over any concept (light or dark) */
+.close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 5;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  background: rgba(10, 12, 18, 0.62);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #fff;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.close:hover {
+  transform: scale(1.08) rotate(90deg);
+  background: var(--accent);
+  border-color: transparent;
+}
+.modalFoot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 15px 22px;
+  background: #171b24;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.footLabel {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.55);
+  font-family: var(--font-body);
+}
+.footLabel span {
+  color: #fff;
+  font-weight: 600;
+}
+.footClose {
+  flex-shrink: 0;
+  padding: 10px 20px;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: background 0.2s ease;
+}
+.footClose:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ---- Responsive: fewer columns for now (one niche → single tile) ---- */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 560px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

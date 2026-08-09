@@ -116,6 +116,7 @@ export function ServiceModal({ service, onClose }: IServiceModalProps) {
               {service.price}
               <BynSign />
             </span>
+            <span className={classes.priceNote}>Фикс-цена в договоре · 1 цикл правок включён</span>
           </div>
           <button className={classes.cta} onClick={goToContact}>
             Обсудить проект →

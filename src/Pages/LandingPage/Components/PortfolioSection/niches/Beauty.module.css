@@ -1,0 +1,427 @@
+/* ==========================================================
+   Beauty niche — own art direction: dark glam, gold on black,
+   high-contrast serif. Structurally distinct: booking widget + price list.
+   ========================================================== */
+.site {
+  --bg: #141110;
+  --surface: #1f1814;
+  --gold: #cba96a;
+  --goldBright: #e7cd8b;
+  --goldDeep: #a9884e;
+  --text: #f3ece1;
+  --muted: #a99c8c;
+  --faint: #6e6358;
+  --line: rgba(203, 169, 106, 0.2);
+  --serif: Georgia, "Times New Roman", serif;
+  --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  width: 100%;
+  border-radius: 22px;
+  overflow: hidden;
+  color: var(--text);
+  font-family: var(--sans);
+  background:
+    radial-gradient(90% 60% at 82% -8%, rgba(203, 169, 106, 0.16), transparent 60%),
+    radial-gradient(70% 50% at 10% 105%, rgba(203, 169, 106, 0.08), transparent 60%),
+    linear-gradient(180deg, #171310, #120f0d);
+}
+.goldText {
+  background: linear-gradient(120deg, var(--goldBright), var(--gold) 55%, var(--goldDeep));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px clamp(20px, 3vw, 48px);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-family: var(--serif);
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--goldBright), var(--goldDeep));
+  box-shadow: 0 0 12px rgba(203, 169, 106, 0.7);
+}
+.nav {
+  display: flex;
+  gap: clamp(18px, 2.2vw, 32px);
+  font-size: 14px;
+  color: var(--muted);
+}
+.nav span:first-child {
+  color: var(--text);
+}
+.topCta {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 100px;
+  border: 1px solid var(--gold);
+  color: var(--goldBright);
+  background: transparent;
+}
+.hairline {
+  height: 1px;
+  background: var(--line);
+  margin: 0 clamp(20px, 3vw, 48px);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  gap: 46px;
+  padding: clamp(30px, 4vw, 56px) clamp(20px, 3vw, 48px) 46px;
+  align-items: center;
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 22px;
+}
+.eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: var(--gold);
+}
+.h1 {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(34px, 4.6vw, 56px);
+  line-height: 1.06;
+  margin-bottom: 22px;
+}
+.h1 em {
+  font-style: italic;
+}
+.lead {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 420px;
+  margin-bottom: 30px;
+}
+.ctaRow {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+.btn {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 16px 30px;
+  border-radius: 100px;
+  cursor: pointer;
+  border: none;
+}
+.btnGold {
+  background: linear-gradient(120deg, var(--goldBright), var(--goldDeep));
+  color: #20180d;
+  box-shadow: 0 12px 30px rgba(203, 169, 106, 0.28);
+}
+.btnGhost {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--text);
+}
+.trust {
+  display: flex;
+  gap: 22px;
+  font-size: 13px;
+  color: var(--faint);
+  flex-wrap: wrap;
+}
+.trust b {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* booking widget — signature element */
+.stage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 420px;
+}
+.ring {
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+}
+.ring2 {
+  position: absolute;
+  width: 270px;
+  height: 270px;
+  border-radius: 50%;
+  border: 1px solid rgba(203, 169, 106, 0.12);
+}
+.glowspot {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(203, 169, 106, 0.22), transparent 70%);
+  filter: blur(8px);
+}
+.widget {
+  position: relative;
+  width: 340px;
+  max-width: 100%;
+  background: linear-gradient(180deg, var(--surface), #1a1510);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 22px 22px 20px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+}
+.wtop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.wtop b {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 700;
+}
+.wtop span {
+  font-size: 12px;
+  color: var(--muted);
+}
+.week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin-bottom: 18px;
+}
+.day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 8px 0;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  font-size: 11px;
+  color: var(--muted);
+}
+.day b {
+  font-size: 14px;
+  color: var(--text);
+  font-family: var(--sans);
+  font-weight: 600;
+}
+.daySel {
+  background: linear-gradient(160deg, var(--gold), var(--goldDeep));
+  border-color: transparent;
+  color: #241a0c;
+}
+.daySel b {
+  color: #241a0c;
+}
+.slabel {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.slots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+.slot {
+  font-size: 13px;
+  padding: 8px 14px;
+  border-radius: 100px;
+  border: 1px solid var(--line);
+  color: var(--text);
+}
+.slotSel {
+  background: rgba(203, 169, 106, 0.16);
+  border-color: var(--gold);
+  color: var(--goldBright);
+  font-weight: 600;
+}
+.slotOff {
+  color: var(--faint);
+  text-decoration: line-through;
+  border-style: dashed;
+}
+.wbtn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 100px;
+  border: none;
+  background: linear-gradient(120deg, var(--goldBright), var(--goldDeep));
+  color: #20180d;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* price list */
+.prices {
+  padding: 8px clamp(20px, 3vw, 48px) 20px;
+}
+.pHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.pHead .t {
+  font-family: var(--serif);
+  font-size: clamp(22px, 3vw, 26px);
+  font-weight: 700;
+}
+.pHead .m {
+  font-size: 13px;
+  color: var(--muted);
+}
+.prow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 4px;
+  border-bottom: 1px solid var(--line);
+}
+.pn {
+  font-size: 16px;
+  font-weight: 600;
+}
+.pd {
+  font-size: 12.5px;
+  color: var(--faint);
+  margin-top: 2px;
+}
+.dots {
+  flex: 1;
+  border-bottom: 1px dotted rgba(203, 169, 106, 0.28);
+  margin: 0 4px 5px;
+}
+.pp {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.pp span {
+  font-size: 13px;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-weight: 500;
+}
+
+/* masters */
+.masters {
+  display: flex;
+  gap: 14px;
+  padding: 22px clamp(20px, 3vw, 48px) clamp(28px, 4vw, 46px);
+}
+.master {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 14px 16px;
+}
+.ava {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1206;
+  background: linear-gradient(140deg, var(--goldBright), var(--goldDeep));
+  box-shadow: 0 0 0 3px rgba(203, 169, 106, 0.16);
+}
+.master b {
+  font-size: 14.5px;
+}
+.master span {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+@media (max-width: 860px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+  .nav {
+    display: none;
+  }
+  .masters {
+    flex-direction: column;
+  }
+}
+@media (max-width: 600px) {
+  .topCta {
+    display: none;
+  }
+}
+
+/* ---------------- Hover vignette (composition) placement ---------------- */
+.sceneSvg {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 16px 22px rgba(0, 0, 0, 0.55));
+}
+.sceneScissors {
+  position: absolute;
+  left: 50%;
+  bottom: 2%;
+  width: 30%;
+  z-index: 2;
+}
+.sceneMirror {
+  position: absolute;
+  left: 3%;
+  bottom: 0;
+  width: 27%;
+  z-index: 1;
+}
+.sceneLipstick {
+  position: absolute;
+  right: 5%;
+  bottom: 2%;
+  width: 15%;
+  z-index: 3;
+}
