@@ -1,0 +1,371 @@
+/* ==========================================================
+   Events / weddings niche — own art direction: blush + gold,
+   romantic elegant serif, centered composition. Structurally distinct:
+   floral hero, format cards, day-timeline.
+   ========================================================== */
+.site {
+  --bg: #fbf5ef;
+  --surface: #ffffff;
+  --ink: #3b2a2f;
+  --muted: #8b7a7e;
+  --faint: #b7a7ab;
+  --rose: #d98ba0;
+  --rose2: #e6a9ba;
+  --roseDeep: #be6b84;
+  --gold: #c9a96a;
+  --goldDeep: #a9884e;
+  --line: rgba(59, 42, 47, 0.13);
+  --serif: Georgia, "Times New Roman", serif;
+  --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  width: 100%;
+  border-radius: 22px;
+  overflow: hidden;
+  color: var(--ink);
+  font-family: var(--sans);
+  background:
+    radial-gradient(70% 50% at 50% -6%, rgba(217, 139, 160, 0.12), transparent 60%),
+    linear-gradient(180deg, #fdf8f3, #f6ece3);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 66px 24px clamp(20px, 3vw, 48px);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--serif);
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.mark {
+  color: var(--rose);
+  font-size: 20px;
+}
+.nav {
+  display: flex;
+  gap: clamp(18px, 2.4vw, 32px);
+  font-size: 14px;
+  color: var(--muted);
+}
+.nav span:first-child {
+  color: var(--ink);
+}
+.topCta {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 22px;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--rose2), var(--roseDeep));
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(190, 107, 132, 0.28);
+}
+.hairline {
+  height: 1px;
+  background: var(--line);
+  margin: 0 clamp(20px, 3vw, 48px);
+}
+
+/* hero — centered, romantic */
+.hero {
+  position: relative;
+  text-align: center;
+  padding: clamp(40px, 5vw, 66px) clamp(20px, 3vw, 48px) clamp(30px, 4vw, 50px);
+  overflow: hidden;
+}
+.ornament {
+  position: absolute;
+  width: 190px;
+  height: auto;
+  opacity: 0.5;
+  pointer-events: none;
+}
+.ornamentTL {
+  top: 6px;
+  left: -12px;
+  transform: scaleX(-1);
+}
+.ornamentBR {
+  bottom: 0;
+  right: -12px;
+}
+.eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--roseDeep);
+  margin-bottom: 20px;
+}
+.h1 {
+  position: relative;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(34px, 5vw, 58px);
+  line-height: 1.08;
+  letter-spacing: 0.005em;
+  margin-bottom: 20px;
+}
+.h1 em {
+  font-style: italic;
+  color: var(--roseDeep);
+}
+.lead {
+  position: relative;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 480px;
+  margin: 0 auto 30px;
+}
+.ctaRow {
+  position: relative;
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 16px 30px;
+  border-radius: 100px;
+  cursor: pointer;
+  border: none;
+}
+.btnRose {
+  background: linear-gradient(135deg, var(--rose2), var(--roseDeep));
+  color: #fff;
+  box-shadow: 0 12px 30px rgba(190, 107, 132, 0.3);
+}
+.btnGhost {
+  background: transparent;
+  border: 1.5px solid var(--line);
+  color: var(--ink);
+}
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 30px auto 0;
+  color: var(--gold);
+}
+.divider::before,
+.divider::after {
+  content: "";
+  width: 70px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+.divider::after {
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+/* format cards */
+.formats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  padding: clamp(20px, 3vw, 34px) clamp(20px, 3vw, 48px) clamp(14px, 2vw, 24px);
+}
+.fCard {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 26px 24px;
+  text-align: center;
+  box-shadow: 0 14px 34px rgba(120, 80, 70, 0.08);
+}
+.fIc {
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 14px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(140deg, rgba(217, 139, 160, 0.16), rgba(201, 169, 106, 0.16));
+}
+.fTitle {
+  font-family: var(--serif);
+  font-size: 21px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.fDesc {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+.fMeta {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--roseDeep);
+  letter-spacing: 0.02em;
+}
+
+/* day timeline — signature */
+.timelineSec {
+  padding: clamp(24px, 3vw, 40px) clamp(20px, 3vw, 48px) clamp(30px, 4vw, 52px);
+}
+.tHead {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.tHead h2 {
+  font-family: var(--serif);
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 700;
+}
+.tHead p {
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  position: relative;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 33px;
+  left: 12%;
+  right: 12%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--rose2), var(--gold));
+  opacity: 0.5;
+}
+.tItem {
+  text-align: center;
+  padding: 0 8px;
+  position: relative;
+}
+.tTime {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--roseDeep);
+  margin-bottom: 14px;
+}
+.tDot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  margin: 0 auto 16px;
+  background: linear-gradient(140deg, var(--rose2), var(--roseDeep));
+  box-shadow: 0 0 0 5px rgba(217, 139, 160, 0.16);
+  position: relative;
+  z-index: 1;
+}
+.tName {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+.tDesc {
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* closing CTA */
+.ctaStrip {
+  margin: 0 clamp(20px, 3vw, 48px) clamp(28px, 4vw, 46px);
+  border-radius: 22px;
+  padding: clamp(28px, 3.5vw, 40px);
+  text-align: center;
+  color: #fff;
+  background:
+    radial-gradient(60% 100% at 50% 0%, rgba(255, 255, 255, 0.14), transparent 60%),
+    linear-gradient(135deg, var(--rose2), var(--roseDeep));
+  box-shadow: 0 22px 50px rgba(190, 107, 132, 0.32);
+}
+.ctaStrip h3 {
+  font-family: var(--serif);
+  font-size: clamp(22px, 3vw, 28px);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.ctaStrip p {
+  font-size: 14.5px;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 460px;
+  margin: 0 auto 22px;
+  line-height: 1.6;
+}
+.ctaStrip .btnWhite {
+  padding: 15px 34px;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 700;
+  background: #fff;
+  color: var(--roseDeep);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
+}
+
+@media (max-width: 860px) {
+  .nav {
+    display: none;
+  }
+  .formats {
+    grid-template-columns: 1fr;
+  }
+  .timeline {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 8px;
+  }
+  .timeline::before {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  .topCta {
+    display: none;
+  }
+}
+
+/* ---------------- Hover vignette (composition) placement ---------------- */
+.sceneSvg {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 16px 22px rgba(0, 0, 0, 0.5));
+}
+.sceneGlasses {
+  position: absolute;
+  left: 50%;
+  bottom: 2%;
+  width: 30%;
+  z-index: 2;
+}
+.sceneRings {
+  position: absolute;
+  left: 4%;
+  bottom: 6%;
+  width: 26%;
+  z-index: 1;
+}
+.sceneBouquet {
+  position: absolute;
+  right: 3%;
+  bottom: 0;
+  width: 22%;
+  z-index: 3;
+}

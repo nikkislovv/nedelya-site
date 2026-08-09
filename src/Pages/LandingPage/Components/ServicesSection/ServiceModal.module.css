@@ -135,7 +135,7 @@
   margin-bottom: 22px;
 }
 .mockupHolder {
-  margin-top: auto;
+  margin-top: 8px;
 }
 
 .right {
@@ -179,6 +179,42 @@
 .check svg {
   width: 11px;
   height: 11px;
+}
+
+/* what's NOT included — muted, dashed markers */
+.excludes {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.excludeItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text-sec);
+  line-height: 1.5;
+}
+.cross {
+  flex-shrink: 0;
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-soft);
+  margin-top: 1px;
+}
+.cross::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  right: 4px;
+  height: 1.5px;
+  border-radius: 1px;
+  background: var(--text-mut);
+  transform: translateY(-50%);
 }
 
 .timing {
@@ -234,6 +270,11 @@
   font-size: 26px;
   font-weight: 800;
   color: var(--text-main);
+}
+.priceNote {
+  font-size: 11.5px;
+  color: var(--text-mut);
+  margin-top: 3px;
 }
 .cta {
   display: inline-flex;

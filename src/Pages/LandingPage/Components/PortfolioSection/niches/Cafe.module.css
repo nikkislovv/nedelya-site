@@ -1,0 +1,353 @@
+/* ==========================================================
+   Cafe / bakery niche — warm cream + caramel + berry, bold sans.
+   Structurally distinct: menu showcase (featured cards + price list).
+   ========================================================== */
+.site {
+  --bg: #fbf4ea;
+  --surface: #ffffff;
+  --ink: #2e211a;
+  --muted: #8a7a6c;
+  --faint: #b3a493;
+  --caramel: #c6883a;
+  --caramelDeep: #a66a24;
+  --berry: #ce5077;
+  --line: rgba(46, 33, 26, 0.12);
+  --sans: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  width: 100%;
+  border-radius: 22px;
+  overflow: hidden;
+  color: var(--ink);
+  font-family: var(--sans);
+  background:
+    radial-gradient(70% 55% at 88% -8%, rgba(198, 136, 58, 0.14), transparent 55%),
+    linear-gradient(180deg, #fdf7ee, #f6ece0);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 66px 22px clamp(20px, 3vw, 48px);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 23px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+.mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: linear-gradient(140deg, var(--caramel), var(--caramelDeep));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+.nav {
+  display: flex;
+  gap: clamp(18px, 2.4vw, 32px);
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 600;
+}
+.nav span:first-child {
+  color: var(--ink);
+}
+.topCta {
+  font-size: 14px;
+  font-weight: 700;
+  padding: 12px 22px;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--caramel), var(--caramelDeep));
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(166, 106, 36, 0.28);
+}
+.hairline {
+  height: 1px;
+  background: var(--line);
+  margin: 0 clamp(20px, 3vw, 48px);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 40px;
+  padding: clamp(30px, 4vw, 52px) clamp(20px, 3vw, 48px) 30px;
+  align-items: center;
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--caramelDeep);
+  margin-bottom: 18px;
+}
+.eyebrow::before {
+  content: "";
+  width: 26px;
+  height: 2px;
+  background: var(--caramel);
+}
+.h1 {
+  font-size: clamp(34px, 4.6vw, 54px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 18px;
+}
+.h1 span {
+  color: var(--berry);
+}
+.lead {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--muted);
+  max-width: 400px;
+  margin-bottom: 26px;
+}
+.ctaRow {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.btn {
+  font-size: 15px;
+  font-weight: 700;
+  padding: 15px 28px;
+  border-radius: 100px;
+  cursor: pointer;
+  border: none;
+}
+.btnCaramel {
+  background: linear-gradient(135deg, var(--caramel), var(--caramelDeep));
+  color: #fff;
+  box-shadow: 0 12px 28px rgba(166, 106, 36, 0.3);
+}
+.btnGhost {
+  background: transparent;
+  border: 1.5px solid var(--line);
+  color: var(--ink);
+}
+.trust {
+  font-size: 13px;
+  color: var(--faint);
+  font-weight: 600;
+}
+
+/* hero visual */
+.plate {
+  position: relative;
+  height: clamp(280px, 32vw, 400px);
+  border-radius: 26px;
+  background: radial-gradient(120% 120% at 32% 18%, #f3e2c8, #e8cfa8 72%, #dcbf90);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 28px 50px rgba(120, 80, 30, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.plateCup {
+  width: 58%;
+}
+.tag {
+  position: absolute;
+  background: #fff;
+  border-radius: 14px;
+  padding: 10px 14px;
+  box-shadow: 0 14px 30px rgba(90, 60, 20, 0.18);
+  font-size: 12.5px;
+  font-weight: 700;
+}
+.tag span {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 600;
+}
+.tagTop {
+  top: 20px;
+  right: 18px;
+}
+.tagBottom {
+  bottom: 20px;
+  left: 18px;
+  color: var(--caramelDeep);
+}
+
+/* menu — signature */
+.menu {
+  padding: clamp(20px, 3vw, 34px) clamp(20px, 3vw, 48px) clamp(28px, 4vw, 48px);
+}
+.menuHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.menuHead h2 {
+  font-size: clamp(26px, 3.4vw, 34px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.chip {
+  font-size: 13px;
+  font-weight: 700;
+  padding: 9px 16px;
+  border-radius: 100px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  background: #fff;
+}
+.chipOn {
+  background: linear-gradient(135deg, var(--caramel), var(--caramelDeep));
+  border-color: transparent;
+  color: #fff;
+}
+
+.featured {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 22px;
+}
+.fCard {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(120, 80, 30, 0.07);
+}
+.fImg {
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(120% 120% at 30% 20%, #f4e6cd, #e7d0ab);
+}
+.fImg svg {
+  width: 88px;
+  height: auto;
+}
+.fBody {
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.fName {
+  font-size: 16px;
+  font-weight: 800;
+}
+.fName span {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 600;
+  margin-top: 2px;
+}
+.fPrice {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--caramelDeep);
+  white-space: nowrap;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 40px;
+}
+.li {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 12px 2px;
+  border-bottom: 1px solid var(--line);
+}
+.li .n {
+  font-size: 15px;
+  font-weight: 700;
+}
+.li .dots {
+  flex: 1;
+  border-bottom: 1px dotted rgba(46, 33, 26, 0.25);
+  transform: translateY(-4px);
+}
+.li .p {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--ink);
+}
+.li .p span {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+@media (max-width: 860px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+  .nav {
+    display: none;
+  }
+  .featured {
+    grid-template-columns: 1fr;
+  }
+  .list {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .topCta {
+    display: none;
+  }
+}
+
+/* ---------------- Hover vignette (composition) placement ---------------- */
+.sceneSvg {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 16px 22px rgba(0, 0, 0, 0.5));
+}
+.sceneCup {
+  position: absolute;
+  left: 50%;
+  bottom: 2%;
+  width: 34%;
+  z-index: 2;
+}
+.sceneCroissant {
+  position: absolute;
+  left: 3%;
+  bottom: 6%;
+  width: 28%;
+  z-index: 1;
+}
+.sceneCupcake {
+  position: absolute;
+  right: 4%;
+  bottom: 2%;
+  width: 22%;
+  z-index: 3;
+}

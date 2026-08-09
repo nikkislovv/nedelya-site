@@ -78,32 +78,6 @@ function ShieldVisual() {
   );
 }
 
-// Продвижение — 3D growth bars + coral arrow
-function ChartVisual() {
-  return (
-    <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <Defs id="promo" />
-      <ellipse cx="60" cy="113" rx="42" ry="6" fill="rgba(0,0,0,0.4)" />
-      {/* bar 1 (steel) */}
-      <rect x="19" y="77" width="21" height="33" rx="6" fill="#38465f" transform="translate(2,2)" />
-      <rect x="19" y="77" width="21" height="33" rx="6" fill="url(#promo-steel)" stroke="rgba(255,255,255,0.55)" strokeWidth="1" />
-      <rect x="22.5" y="79" width="6" height="30" rx="3" fill="rgba(255,255,255,0.5)" />
-      {/* bar 2 (steel) */}
-      <rect x="49" y="60" width="21" height="50" rx="6" fill="#38465f" transform="translate(2,2)" />
-      <rect x="49" y="60" width="21" height="50" rx="6" fill="url(#promo-steel)" stroke="rgba(255,255,255,0.55)" strokeWidth="1" />
-      <rect x="52.5" y="62" width="6" height="47" rx="3" fill="rgba(255,255,255,0.5)" />
-      {/* bar 3 (coral, tallest) */}
-      <rect x="79" y="40" width="21" height="70" rx="6" fill="#c23a1c" transform="translate(2,2)" />
-      <rect x="79" y="40" width="21" height="70" rx="6" fill="url(#promo-coral)" stroke="rgba(255,255,255,0.55)" strokeWidth="1" />
-      <rect x="82.5" y="42" width="6" height="66" rx="3" fill="rgba(255,255,255,0.42)" />
-      {/* trend arrow */}
-      <path d="M18 66 L46 46 L66 55 L98 25" stroke="#ff6a3d" strokeWidth="6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M18 66 L46 46 L66 55 L98 25" stroke="rgba(255,255,255,0.45)" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M80 22 L103 19 L100 42 Z" fill="#ff6a3d" stroke="rgba(255,255,255,0.4)" strokeWidth="1" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
 /* ---------- Data ---------- */
 
 interface IAddon {
@@ -132,14 +106,6 @@ const ADDONS: IAddon[] = [
     suffix: "/мес",
     Visual: ShieldVisual,
   },
-  {
-    id: "promo",
-    title: "Продвижение",
-    desc: "SEO, подключение рекламы и аналитика — приводим клиентов.",
-    amount: "от 390",
-    suffix: "",
-    Visual: ChartVisual,
-  },
 ];
 
 export function AddonsShowcase() {
@@ -151,8 +117,8 @@ export function AddonsShowcase() {
             <span className={classes.label}>Дополнительно</span>
             <h3 className={classes.title}>Запустили сайт — а дальше?</h3>
             <p className={classes.desc}>
-              Три вещи, которые продлевают сайту жизнь и приводят клиентов: где он живёт,
-              кто его развивает и как о нём узнают. Подключаются по необходимости.
+              Дальше важны две вещи: где сайт живёт и кто держит его в форме. Хостинг с доменом
+              и поддержку подключаем по необходимости — без обязательной подписки.
             </p>
           </div>
         </SlideIn>

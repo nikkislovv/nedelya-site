@@ -1,23 +1,37 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import clsx from "clsx";
-import { SectionHead } from "../../../../Components/SectionHead/SectionHead";
-import { SlideIn } from "../../../../Components/SlideIn/SlideIn";
+import { motion, AnimatePresence, useReducedMotion, type Variants, type Transition } from "motion/react";
 import { Button } from "../../../../Components/Button/Button";
+import { TelegramIcon, WhatsappIcon, EmailIcon } from "../../../../Components/BrandIcons/BrandIcons";
 import classes from "./ContactSection.module.css";
 
 const PROJECT_TYPES = [
-  "Сайт-визитка",
   "Лендинг",
+  "Сайт-визитка",
+  "Интернет-магазин",
   "Портфолио",
-  "Сайт мероприятия",
   "Блог / контент-сайт",
   "Сайт услуг",
-  "Каталог / витрина",
-  "Интернет-магазин",
   "Только дизайн",
-  "Разработка по готовому дизайну",
+  "По готовому дизайну",
   "Другое",
 ];
+
+const CONTACTS = [
+  { Icon: TelegramIcon, label: "Telegram", value: "@nedelya_site", href: "https://t.me/nedelya_site", external: true },
+  { Icon: WhatsappIcon, label: "WhatsApp", value: "+375 (00) 000-00-00", href: "https://wa.me/375000000000", external: true },
+  { Icon: EmailIcon, label: "Email", value: "hello@nedelya.site", href: "mailto:hello@nedelya.site", external: false },
+] as const;
+
+const TRUST = ["Оценка бесплатно", "Ответ за 24 часа", "Без спама и звонков"];
+
+function CheckIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+      <path d="M2.5 7.4l3 3 6-7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
 
 interface IFormState {
   name: string;
@@ -43,26 +57,27 @@ const INITIAL: IFormState = {
   agree: false,
 };
 
+/* ---------- Motion variants ---------- */
+const REVEAL: Variants = {
+  hidden: { opacity: 0, y: 18 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+};
+const CONTAINER: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.07, delayChildren: 0.04 } },
+};
+const CHIP_SPRING = { type: "spring", stiffness: 420, damping: 26 } as const;
+const CARD_T: Transition = { duration: 0.55, ease: "easeOut" };
+const SUCCESS_T: Transition = { duration: 0.4, ease: "easeOut" };
+
 export function ContactSection() {
   const [form, setForm] = useState<IFormState>(INITIAL);
   const [errors, setErrors] = useState<IErrors>({});
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
 
   const set = (field: keyof IFormState, value: string | boolean) =>
     setForm((f) => ({ ...f, [field]: value }));
-
-  /* Close dropdown when clicking outside */
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setDropdownOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, []);
 
   const validate = (): IErrors => {
     const e: IErrors = {};
@@ -102,77 +117,202 @@ export function ContactSection() {
     }
   };
 
-  if (status === "success") {
-    return (
-      <section className={classes.section} id="contact">
-        <div className={classes.inner}>
-          <div className={classes.wrap}>
-            <div className={classes.success}>
-              <div className={classes.successIcon}>🎉</div>
-              <div className={classes.successTitle}>Спасибо!</div>
-              <p className={classes.successText}>
-                Мы получили вашу заявку и свяжемся в течение 24 часов.
-              </p>
-              <Button variant="outline" className={classes.successBtn} onClick={() => setStatus("idle")}>
-                Отправить ещё одну
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  }
+  /* Reveal helpers that respect reduced motion */
+  const containerProps = reduce
+    ? {}
+    : { variants: CONTAINER, initial: "hidden" as const, whileInView: "show" as const, viewport: { once: true, amount: 0.25 } };
+  const item = reduce ? {} : { variants: REVEAL };
+  const cardProps = reduce
+    ? {}
+    : {
+        initial: { opacity: 0, y: 26 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true, amount: 0.15 },
+        transition: CARD_T,
+      };
+
+  const submitDisabled = !form.agree || status === "loading";
 
   return (
     <section className={classes.section} id="contact">
       <div className={classes.inner}>
-        <SlideIn direction="bottom">
-          <SectionHead label="Контакты" title="Обсудить проект" subtitle="Ответим в течение 24 часов" />
-        </SlideIn>
+        <div className={classes.grid}>
+          {/* ---------- LEFT · info panel ---------- */}
+          <motion.div className={classes.info} {...containerProps}>
+            <motion.span className={classes.eyebrow} {...item}>
+              Контакты
+            </motion.span>
+            <motion.h2 className={classes.title} {...item}>
+              Обсудить проект
+            </motion.h2>
+            <motion.p className={classes.lead} {...item}>
+              Расскажите о задаче — вернёмся с оценкой и сроками за 24 часа. Без обязательств.
+            </motion.p>
 
-        <SlideIn direction="bottom" delay={100}>
-          <div className={classes.wrap}>
-            <form className={classes.form} onSubmit={handleSubmit} noValidate>
-              <div className={classes.row}>
-                {/* Имя */}
+            <motion.div className={classes.contacts} {...(reduce ? {} : { variants: CONTAINER })}>
+              {CONTACTS.map(({ Icon, label, value, href, external }) => (
+                <motion.a
+                  key={label}
+                  href={href}
+                  className={classes.contactRow}
+                  {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  {...item}
+                  whileHover={reduce ? undefined : { x: 4 }}
+                  transition={CHIP_SPRING}
+                >
+                  <span className={classes.contactIcon}>
+                    <Icon />
+                  </span>
+                  <span className={classes.contactMeta}>
+                    <span className={classes.contactLabel}>{label}</span>
+                    <span className={classes.contactValue}>{value}</span>
+                  </span>
+                  <span className={classes.contactArrow} aria-hidden="true">
+                    →
+                  </span>
+                </motion.a>
+              ))}
+            </motion.div>
+
+            <motion.ul className={classes.trust} {...(reduce ? {} : { variants: CONTAINER })}>
+              {TRUST.map((t) => (
+                <motion.li key={t} className={classes.trustItem} {...item}>
+                  <span className={classes.trustCheck}>
+                    <CheckIcon />
+                  </span>
+                  {t}
+                </motion.li>
+              ))}
+            </motion.ul>
+          </motion.div>
+
+          {/* ---------- RIGHT · form card ---------- */}
+          <motion.div className={classes.card} {...cardProps}>
+            {status === "success" ? (
+              <motion.div
+                className={classes.success}
+                initial={reduce ? false : { opacity: 0, scale: 0.96 }}
+                animate={reduce ? undefined : { opacity: 1, scale: 1 }}
+                transition={SUCCESS_T}
+              >
+                <div className={classes.successIcon}>🎉</div>
+                <div className={classes.successTitle}>Спасибо!</div>
+                <p className={classes.successText}>
+                  Мы получили вашу заявку и свяжемся в течение 24 часов.
+                </p>
+                <Button variant="outline" className={classes.successBtn} onClick={() => setStatus("idle")}>
+                  Отправить ещё одну
+                </Button>
+              </motion.div>
+            ) : (
+              <form className={classes.form} onSubmit={handleSubmit} noValidate>
+                {/* Тип проекта — selectable chips */}
                 <div className={classes.field}>
                   <label className={classes.label}>
-                    Имя <span>*</span>
+                    Тип проекта <span>*</span>
                   </label>
-                  <input
-                    type="text"
-                    className={clsx(classes.input, errors.name && classes.inputErr)}
-                    placeholder="Как вас зовут?"
-                    value={form.name}
-                    onChange={(e) => set("name", e.target.value)}
-                    onBlur={() => {
-                      if (!form.name.trim()) setErrors((er) => ({ ...er, name: "Введите ваше имя" }));
-                    }}
-                  />
-                  {errors.name && <span className={classes.fieldErr}>⚠ {errors.name}</span>}
+                  <div className={classes.chips} role="radiogroup" aria-label="Тип проекта">
+                    {PROJECT_TYPES.map((t) => {
+                      const active = form.projectType === t;
+                      return (
+                        <motion.button
+                          key={t}
+                          type="button"
+                          role="radio"
+                          aria-checked={active}
+                          className={clsx(classes.chip, active && classes.chipActive)}
+                          onClick={() => {
+                            set("projectType", t);
+                            setErrors((er) => ({ ...er, projectType: undefined }));
+                          }}
+                          whileHover={reduce ? undefined : { y: -2 }}
+                          whileTap={reduce ? undefined : { scale: 0.94 }}
+                          transition={CHIP_SPRING}
+                        >
+                          {t}
+                        </motion.button>
+                      );
+                    })}
+                  </div>
+                  <AnimatePresence initial={false}>
+                    {errors.projectType && (
+                      <motion.span
+                        className={classes.fieldErr}
+                        initial={reduce ? false : { opacity: 0, y: -4 }}
+                        animate={reduce ? undefined : { opacity: 1, y: 0 }}
+                        exit={reduce ? undefined : { opacity: 0, y: -4 }}
+                      >
+                        ⚠ {errors.projectType}
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
                 </div>
 
-                {/* Email */}
-                <div className={classes.field}>
-                  <label className={classes.label}>
-                    E-mail <span>*</span>
-                  </label>
-                  <input
-                    type="email"
-                    className={clsx(classes.input, errors.email && classes.inputErr)}
-                    placeholder="hello@example.com"
-                    value={form.email}
-                    onChange={(e) => set("email", e.target.value)}
-                  />
-                  {errors.email && <span className={classes.fieldErr}>⚠ {errors.email}</span>}
-                </div>
-              </div>
+                {/* Имя + E-mail */}
+                <div className={classes.row}>
+                  <div className={classes.field}>
+                    <label className={classes.label} htmlFor="cf-name">
+                      Имя <span>*</span>
+                    </label>
+                    <input
+                      id="cf-name"
+                      type="text"
+                      className={clsx(classes.input, errors.name && classes.inputErr)}
+                      placeholder="Как вас зовут?"
+                      value={form.name}
+                      onChange={(e) => set("name", e.target.value)}
+                      onBlur={() => {
+                        if (!form.name.trim()) setErrors((er) => ({ ...er, name: "Введите ваше имя" }));
+                      }}
+                    />
+                    <AnimatePresence initial={false}>
+                      {errors.name && (
+                        <motion.span
+                          className={classes.fieldErr}
+                          initial={reduce ? false : { opacity: 0, y: -4 }}
+                          animate={reduce ? undefined : { opacity: 1, y: 0 }}
+                          exit={reduce ? undefined : { opacity: 0, y: -4 }}
+                        >
+                          ⚠ {errors.name}
+                        </motion.span>
+                      )}
+                    </AnimatePresence>
+                  </div>
 
-              <div className={classes.row}>
+                  <div className={classes.field}>
+                    <label className={classes.label} htmlFor="cf-email">
+                      E-mail <span>*</span>
+                    </label>
+                    <input
+                      id="cf-email"
+                      type="email"
+                      className={clsx(classes.input, errors.email && classes.inputErr)}
+                      placeholder="hello@example.com"
+                      value={form.email}
+                      onChange={(e) => set("email", e.target.value)}
+                    />
+                    <AnimatePresence initial={false}>
+                      {errors.email && (
+                        <motion.span
+                          className={classes.fieldErr}
+                          initial={reduce ? false : { opacity: 0, y: -4 }}
+                          animate={reduce ? undefined : { opacity: 1, y: 0 }}
+                          exit={reduce ? undefined : { opacity: 0, y: -4 }}
+                        >
+                          ⚠ {errors.email}
+                        </motion.span>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </div>
+
                 {/* Телефон / Telegram */}
                 <div className={classes.field}>
-                  <label className={classes.label}>Телефон / Telegram</label>
+                  <label className={classes.label} htmlFor="cf-phone">
+                    Телефон / Telegram
+                  </label>
                   <input
+                    id="cf-phone"
                     type="text"
                     className={classes.input}
                     placeholder="+375… или @username"
@@ -181,115 +321,69 @@ export function ContactSection() {
                   />
                 </div>
 
-                {/* Тип проекта — custom dropdown */}
+                {/* Комментарий */}
                 <div className={classes.field}>
-                  <label className={classes.label}>
-                    Тип проекта <span>*</span>
+                  <label className={classes.label} htmlFor="cf-comment">
+                    Комментарий
                   </label>
-                  <div
-                    className={clsx(
-                      classes.customSelect,
-                      dropdownOpen && classes.customSelectOpen,
-                      errors.projectType && classes.customSelectErr,
-                    )}
-                    ref={dropdownRef}
-                  >
-                    <button
-                      type="button"
-                      className={classes.trigger}
-                      onClick={() => setDropdownOpen((o) => !o)}
-                      aria-haspopup="listbox"
-                      aria-expanded={dropdownOpen}
+                  <textarea
+                    id="cf-comment"
+                    className={classes.textarea}
+                    placeholder="Расскажите коротко о проекте: что нужно сделать, есть ли брендинг, примеры которые нравятся..."
+                    value={form.comment}
+                    onChange={(e) => set("comment", e.target.value)}
+                  />
+                </div>
+
+                {/* Согласие */}
+                <div className={classes.checkboxRow}>
+                  <input
+                    type="checkbox"
+                    id="agree"
+                    className={classes.checkbox}
+                    checked={form.agree}
+                    onChange={(e) => set("agree", e.target.checked)}
+                  />
+                  <label htmlFor="agree" className={classes.checkboxLbl}>
+                    Я согласен(а) с&nbsp;
+                    <a href="/privacy" target="_blank" rel="noopener noreferrer">
+                      политикой конфиденциальности
+                    </a>
+                    &nbsp;и даю согласие на обработку персональных данных
+                  </label>
+                </div>
+
+                {/* Error message */}
+                <AnimatePresence initial={false}>
+                  {status === "error" && (
+                    <motion.div
+                      className={classes.errMsg}
+                      initial={reduce ? false : { opacity: 0, y: -6 }}
+                      animate={reduce ? undefined : { opacity: 1, y: 0 }}
+                      exit={reduce ? undefined : { opacity: 0, y: -6 }}
                     >
-                      <span className={form.projectType ? undefined : classes.placeholder}>
-                        {form.projectType || "— Выберите тип —"}
-                      </span>
-                      <span className={classes.arrow} aria-hidden="true">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                          <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      </span>
-                    </button>
-                    {dropdownOpen && (
-                      <div className={classes.menu} role="listbox">
-                        {PROJECT_TYPES.map((t) => (
-                          <button
-                            key={t}
-                            type="button"
-                            role="option"
-                            aria-selected={form.projectType === t}
-                            className={clsx(classes.option, form.projectType === t && classes.optionActive)}
-                            onClick={() => {
-                              set("projectType", t);
-                              setDropdownOpen(false);
-                              setErrors((er) => ({ ...er, projectType: undefined }));
-                            }}
-                          >
-                            {t}
-                            {form.projectType === t && (
-                              <svg className={classes.check} width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                <path d="M2.5 7l3.5 3.5 5.5-6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                              </svg>
-                            )}
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                  {errors.projectType && <span className={classes.fieldErr}>⚠ {errors.projectType}</span>}
-                </div>
-              </div>
+                      Что-то пошло не так. Напишите нам в Telegram:{" "}
+                      <a href="https://t.me/nedelya_support">@nedelya_support</a>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
-              {/* Комментарий */}
-              <div className={classes.field}>
-                <label className={classes.label}>Комментарий</label>
-                <textarea
-                  className={classes.textarea}
-                  placeholder="Расскажите коротко о проекте: что нужно сделать, есть ли брендинг, примеры которые нравятся..."
-                  value={form.comment}
-                  onChange={(e) => set("comment", e.target.value)}
-                />
-              </div>
+                {/* Submit */}
+                <motion.div
+                  className={classes.submitWrap}
+                  whileTap={reduce || submitDisabled ? undefined : { scale: 0.985 }}
+                  transition={CHIP_SPRING}
+                >
+                  <Button type="submit" className={classes.submit} disabled={submitDisabled}>
+                    {status === "loading" ? "⏳ Отправляем..." : "Отправить заявку →"}
+                  </Button>
+                </motion.div>
 
-              {/* Согласие */}
-              <div className={classes.checkboxRow}>
-                <input
-                  type="checkbox"
-                  id="agree"
-                  className={classes.checkbox}
-                  checked={form.agree}
-                  onChange={(e) => set("agree", e.target.checked)}
-                />
-                <label htmlFor="agree" className={classes.checkboxLbl}>
-                  Я согласен(а) с&nbsp;
-                  <a href="/privacy" target="_blank" rel="noopener noreferrer">
-                    политикой конфиденциальности
-                  </a>
-                  &nbsp;и даю согласие на обработку персональных данных
-                </label>
-              </div>
-
-              {/* Error message */}
-              {status === "error" && (
-                <div className={classes.errMsg}>
-                  Что-то пошло не так. Напишите нам в Telegram:{" "}
-                  <a href="https://t.me/nedelya_support">@nedelya_support</a>
-                </div>
-              )}
-
-              {/* Submit */}
-              <Button
-                type="submit"
-                className={classes.submit}
-                disabled={!form.agree || status === "loading"}
-              >
-                {status === "loading" ? "⏳ Отправляем..." : "Отправить заявку →"}
-              </Button>
-
-              <p className={classes.hint}>Ответим в течение 24 часов. Без спама и лишних звонков.</p>
-            </form>
-          </div>
-        </SlideIn>
+                <p className={classes.hint}>Ответим в течение 24 часов. Без спама и лишних звонков.</p>
+              </form>
+            )}
+          </motion.div>
+        </div>
       </div>
     </section>
   );
