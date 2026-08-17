@@ -86,6 +86,7 @@ interface IAddon {
   desc: string;
   amount: string;
   suffix: string;
+  priceText?: string;
   Visual: () => ReactNode;
 }
 
@@ -93,17 +94,18 @@ const ADDONS: IAddon[] = [
   {
     id: "hosting",
     title: "Хостинг и домен",
-    desc: "Публикация, SSL, домен и хостинг — держим сайт онлайн 24/7.",
-    amount: "49",
-    suffix: "/мес",
+    desc: "Публикация, SSL, домен и хостинг — держим сайт онлайн 24/7. Первые полгода — в подарок.",
+    amount: "от 200",
+    suffix: "/год",
     Visual: ServerVisual,
   },
   {
     id: "support",
-    title: "Поддержка и развитие",
-    desc: "Правки, обновления и новые блоки по мере роста бизнеса.",
-    amount: "159",
-    suffix: "/мес",
+    title: "Поддержка и правки",
+    desc: "Правки после сдачи, обновления и новые блоки по мере роста бизнеса.",
+    amount: "",
+    suffix: "",
+    priceText: "Индивидуально",
     Visual: ShieldVisual,
   },
 ];
@@ -117,8 +119,8 @@ export function AddonsShowcase() {
             <span className={classes.label}>Дополнительно</span>
             <h3 className={classes.title}>Запустили сайт — а дальше?</h3>
             <p className={classes.desc}>
-              Дальше важны две вещи: где сайт живёт и кто держит его в форме. Хостинг с доменом
-              и поддержку подключаем по необходимости — без обязательной подписки.
+              Первые полгода хостинг — в подарок. Дальше хостинг с доменом и поддержку
+              подключаем по необходимости, без обязательной подписки.
             </p>
           </div>
         </SlideIn>
@@ -131,9 +133,15 @@ export function AddonsShowcase() {
                   <h4 className={classes.cardTitle}>{a.title}</h4>
                   <p className={classes.cardDesc}>{a.desc}</p>
                   <div className={classes.price}>
-                    {a.amount}
-                    <BynSign />
-                    {a.suffix && <span className={classes.priceSuffix}>{a.suffix}</span>}
+                    {a.priceText ? (
+                      a.priceText
+                    ) : (
+                      <>
+                        {a.amount}
+                        <BynSign />
+                        {a.suffix && <span className={classes.priceSuffix}>{a.suffix}</span>}
+                      </>
+                    )}
                   </div>
                 </div>
                 <div className={classes.visual}>

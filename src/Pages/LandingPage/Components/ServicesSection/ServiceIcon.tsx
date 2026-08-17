@@ -43,14 +43,13 @@ const GLYPHS: Record<TMockupType, JSX.Element> = {
       <path d="M4.6 17.4l4-4.7 3 3 3.2-3.8 4.4 5.5H4.6Z" fill={DARK} />
     </>
   ),
-  // Блог — article / content
-  blog: (
+  // Каталог-витрина — grid of product tiles
+  catalog: (
     <>
-      <rect x="4.6" y="3.4" width="14.8" height="17.2" rx="2.6" fill="#fff" />
-      <rect x="7.1" y="7" width="9.8" height="1.9" rx="0.95" fill={DARK} />
-      <rect x="7.1" y="10.6" width="9.8" height="1.5" rx="0.75" fill={DARK_SOFT} />
-      <rect x="7.1" y="13.2" width="9.8" height="1.5" rx="0.75" fill={DARK_SOFT} />
-      <rect x="7.1" y="15.8" width="6" height="1.5" rx="0.75" fill={DARK_SOFT} />
+      <rect x="3.6" y="3.6" width="7.4" height="7.4" rx="1.8" fill="#fff" />
+      <rect x="13" y="3.6" width="7.4" height="7.4" rx="1.8" fill="#fff" />
+      <rect x="3.6" y="13" width="7.4" height="7.4" rx="1.8" fill={DARK} />
+      <rect x="13" y="13" width="7.4" height="7.4" rx="1.8" fill={DARK} />
     </>
   ),
   // Сайт услуг — calendar / booking with check

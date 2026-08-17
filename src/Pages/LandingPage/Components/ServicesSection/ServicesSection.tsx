@@ -51,9 +51,24 @@ export function ServicesSection() {
                 <div className={classes.name}>{svc.name}</div>
                 <div className={classes.tagline}>{svc.tagline}</div>
                 <div className={classes.foot}>
-                  <span className={classes.price}>
-                    {svc.price}
-                    <BynSign />
+                  <span className={classes.footLeft}>
+                    <span className={classes.price}>
+                      {svc.price}
+                      <BynSign />
+                    </span>
+                    <span className={classes.timeline}>
+                      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                        <circle cx="8" cy="8" r="6.4" stroke="currentColor" strokeWidth="1.5" />
+                        <path
+                          d="M8 4.6V8l2.3 1.4"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                      {svc.timeline}
+                    </span>
                   </span>
                   <span className={classes.more}>Подробнее →</span>
                 </div>

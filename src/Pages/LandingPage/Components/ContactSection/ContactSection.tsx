@@ -2,7 +2,7 @@ import { useState } from "react";
 import clsx from "clsx";
 import { motion, AnimatePresence, useReducedMotion, type Variants, type Transition } from "motion/react";
 import { Button } from "../../../../Components/Button/Button";
-import { TelegramIcon, WhatsappIcon, EmailIcon } from "../../../../Components/BrandIcons/BrandIcons";
+import { TelegramIcon, WhatsappIcon, ViberIcon, EmailIcon } from "../../../../Components/BrandIcons/BrandIcons";
 import classes from "./ContactSection.module.css";
 
 const PROJECT_TYPES = [
@@ -10,7 +10,7 @@ const PROJECT_TYPES = [
   "Сайт-визитка",
   "Интернет-магазин",
   "Портфолио",
-  "Блог / контент-сайт",
+  "Витрина товаров",
   "Сайт услуг",
   "Только дизайн",
   "По готовому дизайну",
@@ -18,8 +18,9 @@ const PROJECT_TYPES = [
 ];
 
 const CONTACTS = [
-  { Icon: TelegramIcon, label: "Telegram", value: "@nedelya_site", href: "https://t.me/nedelya_site", external: true },
-  { Icon: WhatsappIcon, label: "WhatsApp", value: "+375 (00) 000-00-00", href: "https://wa.me/375000000000", external: true },
+  { Icon: TelegramIcon, label: "Telegram", value: "@kslv74", href: "https://t.me/kslv74", external: true },
+  { Icon: ViberIcon, label: "Viber", value: "+375 44 562-82-41", href: "viber://chat?number=%2B375445628241", external: false },
+  { Icon: WhatsappIcon, label: "WhatsApp", value: "+375 44 562-82-41", href: "https://wa.me/375445628241", external: true },
   { Icon: EmailIcon, label: "Email", value: "hello@nedelya.site", href: "mailto:hello@nedelya.site", external: false },
 ] as const;
 
@@ -363,7 +364,7 @@ export function ContactSection() {
                       exit={reduce ? undefined : { opacity: 0, y: -6 }}
                     >
                       Что-то пошло не так. Напишите нам в Telegram:{" "}
-                      <a href="https://t.me/nedelya_support">@nedelya_support</a>
+                      <a href="https://t.me/kslv74">@kslv74</a>
                     </motion.div>
                   )}
                 </AnimatePresence>

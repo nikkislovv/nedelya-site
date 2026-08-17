@@ -94,7 +94,7 @@ export function HeroSection() {
             </SlideIn>
             <SlideIn direction="left" delay={150} duration={900}>
               <p className={classes.subtitle}>
-                за 5 дней — <em>от&nbsp;790<BynSign /></em>
+                за 5 дней — <em>от&nbsp;600<BynSign /></em>
               </p>
             </SlideIn>
           </div>

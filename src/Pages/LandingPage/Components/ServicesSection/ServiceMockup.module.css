@@ -53,6 +53,20 @@
   color: rgba(255, 255, 255, 0.9);
 }
 
+/* Fill mode: frame stretches to its holder's height (used inside the modal so
+   the left column matches the taller right column with no dead gap). The screen
+   grows past its base height; layouts with a flex:1 region expand gracefully. */
+.frameFill {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.frameFill .screen {
+  flex: 1;
+  height: auto;
+  min-height: 214px;
+}
+
 /* shared bits */
 .softBlock {
   background: color-mix(in srgb, var(--svc) 26%, transparent);
@@ -164,116 +178,428 @@
   clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
 }
 
-/* ---------- Landing ---------- */
+/* ---------- Landing — premium one-page landing (hero + stacked sections + lead form) ---------- */
+/* First screen */
 .lHero {
   display: flex;
-  gap: 12px;
-  align-items: center;
-  flex: 1;
-}
-.lCol {
-  flex: 1;
-  display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.lEyebrow {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px 3px 7px;
+  border-radius: 100px;
+  font-size: 7.5px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--svc);
+  background: color-mix(in srgb, var(--svc) 15%, transparent);
+  border: 1px solid color-mix(in srgb, var(--svc) 34%, transparent);
+}
+.lEyebrow::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--svc);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--svc) 24%, transparent);
 }
 .lTitle {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 800;
-  line-height: 1.15;
+  line-height: 1.06;
   color: #fff;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
+  margin-top: 1px;
 }
 .lSub {
-  font-size: 9px;
-  color: rgba(255, 255, 255, 0.58);
+  font-size: 8.5px;
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.6);
+}
+.lHeroFoot {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 3px;
 }
 .trust {
   display: flex;
   align-items: center;
-  gap: 6px;
-  margin-top: 2px;
-}
-.lArt {
-  width: 76px;
-  height: 108px;
-  border-radius: 12px;
-  flex-shrink: 0;
-}
-.lFeatures {
-  display: flex;
-  gap: 8px;
-  margin-top: 12px;
-}
-.lFeatures span {
-  flex: 1;
-  text-align: center;
-  padding: 8px 4px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  font-size: 8.5px;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.72);
+  gap: 5px;
 }
 
-/* ---------- Business card ---------- */
+/* Section stack — grows to fill the tall modal; extra bands reveal there */
+.lBands {
+  flex: 1;
+  min-height: 0;
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 7px;
+}
+/* In the tall modal the whole page reveals — let the sections breathe evenly */
+.frameFill .lBands {
+  gap: 11px;
+}
+.lBand {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.lBandLabel {
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--svc) 82%, #ffffff);
+}
+/* Bands that only appear in the tall modal (read as "more of the page") */
+.lFillOnly {
+  display: none;
+}
+.frameFill .lFillOnly {
+  display: flex;
+}
+
+/* Задача → решение */
+.lSplit {
+  display: flex;
+  align-items: stretch;
+  gap: 7px;
+}
+.lSplitCard {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 7px 9px;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.lSolution {
+  background: color-mix(in srgb, var(--svc) 11%, transparent);
+  border-color: color-mix(in srgb, var(--svc) 34%, transparent);
+}
+.lSplitTag {
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.42);
+}
+.lSolution .lSplitTag {
+  color: var(--svc);
+}
+.lSplitTxt {
+  font-size: 8.5px;
+  line-height: 1.25;
+  color: rgba(255, 255, 255, 0.82);
+}
+.lSplitArrow {
+  align-self: center;
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--svc);
+}
+
+/* Этапы 1-2-3 */
+.lSteps {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.lStep {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 7px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.lStepNum {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 8px;
+  font-weight: 800;
+  color: #fff;
+  background: var(--svc);
+  box-shadow: 0 2px 6px color-mix(in srgb, var(--svc) 42%, transparent);
+}
+.lStepTxt {
+  font-size: 8.5px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  white-space: nowrap;
+}
+
+/* Отзывы */
+.lReviews {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.lAvatars {
+  display: flex;
+  flex-shrink: 0;
+}
+.lAvatar {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  margin-left: -6px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--svc) 42%, transparent);
+  border: 1.5px solid rgba(20, 27, 40, 0.95);
+}
+.lAvatar:first-child {
+  margin-left: 0;
+}
+/* tiny avatar silhouette */
+.lAvatar::before {
+  content: "";
+  position: absolute;
+  top: 21%;
+  left: 50%;
+  width: 34%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+  transform: translateX(-50%);
+}
+.lAvatar::after {
+  content: "";
+  position: absolute;
+  bottom: -22%;
+  left: 50%;
+  width: 66%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+  transform: translateX(-50%);
+}
+.lReviewCol {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+/* Форма заявки */
+.lForm {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 7px 9px;
+  border-radius: 11px;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--svc) 20%, transparent),
+    color-mix(in srgb, var(--svc) 7%, transparent)
+  );
+  border: 1px solid color-mix(in srgb, var(--svc) 28%, transparent);
+}
+.lFormLabel {
+  font-size: 8.5px;
+  font-weight: 700;
+  color: #fff;
+}
+.lFormRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.lInput {
+  flex: 1;
+  min-width: 0;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  padding: 0 9px;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  font-size: 8.5px;
+  color: rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+  overflow: hidden;
+}
+.lFormBtn {
+  flex-shrink: 0;
+  height: 20px;
+  min-width: 32px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #fff;
+  background: var(--svc);
+  box-shadow: 0 4px 10px color-mix(in srgb, var(--svc) 42%, transparent);
+}
+
+/* ---------- Business card — multi-page company site + feedback form ---------- */
 .cardHead {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 13px;
+  gap: 11px;
+  margin-bottom: 9px;
+  flex-shrink: 0;
 }
 .cardAvatar {
-  width: 46px;
-  height: 46px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   flex-shrink: 0;
 }
 .cardHeadCol {
   flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 2px;
 }
 .cardName {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 800;
   color: #fff;
 }
 .cardRole {
-  font-size: 9px;
+  font-size: 8.5px;
   font-weight: 600;
   color: var(--svc);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+/* compact «Контакты» chip strip */
 .cardContacts {
   display: flex;
-  flex-direction: column;
-  gap: 9px;
-  margin-bottom: 13px;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  margin-bottom: 9px;
+  flex-shrink: 0;
 }
-.cardContacts > div {
-  display: flex;
+.cardContact {
+  display: inline-flex;
   align-items: center;
-  gap: 9px;
-  font-size: 9.5px;
-  color: rgba(255, 255, 255, 0.78);
+  gap: 6px;
+  font-size: 8.5px;
+  color: rgba(255, 255, 255, 0.68);
+  white-space: nowrap;
 }
 .cIcon {
-  width: 15px;
-  height: 15px;
+  width: 12px;
+  height: 12px;
   background: color-mix(in srgb, var(--svc) 46%, transparent);
   flex-shrink: 0;
 }
 .cPhone { border-radius: 50%; }
-.cMail { border-radius: 4px; }
+.cMail { border-radius: 3px; }
 .cPin { border-radius: 50% 50% 50% 0; transform: rotate(-45deg); }
 
+/* Форма обратной связи — grows to fill the tall modal (textarea expands) */
+.cardForm {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px 9px;
+  border-radius: 11px;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--svc) 14%, transparent),
+    color-mix(in srgb, var(--svc) 5%, transparent)
+  );
+  border: 1px solid color-mix(in srgb, var(--svc) 24%, transparent);
+}
+.cardFormTitle {
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--svc);
+}
+.cardFormRow {
+  display: flex;
+  gap: 6px;
+}
+.cardInput {
+  flex: 1;
+  min-width: 0;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 8px;
+  color: rgba(255, 255, 255, 0.44);
+  white-space: nowrap;
+  overflow: hidden;
+}
+.cardTextarea {
+  flex: 1;
+  min-height: 20px;
+  height: auto;
+  align-items: flex-start;
+  padding-top: 6px;
+}
+
 /* ---------- Shop ---------- */
+/* categories strip — «витрина/каталог: категории» */
+.shopCats {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.shopCat {
+  font-size: 8px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.55);
+  padding: 3px 9px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  white-space: nowrap;
+}
+.shopCatOn {
+  color: #fff;
+  background: var(--svc);
+  border-color: transparent;
+  box-shadow: 0 3px 8px color-mix(in srgb, var(--svc) 40%, transparent);
+}
 .shopGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 9px;
+  gap: 8px;
   flex: 1;
 }
 .shopCard {
@@ -285,16 +611,55 @@
   flex-direction: column;
 }
 .shopImg {
-  height: 34px;
+  position: relative;
+  height: 27px;
   background: color-mix(in srgb, var(--svc) 24%, transparent);
 }
+/* product badge — бейджи «Скидка»/«Новинка» */
+.shopTag {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  font-size: 6.5px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  padding: 2px 5px;
+  border-radius: 100px;
+  color: #fff;
+}
+.shopTagSale {
+  background: var(--svc);
+  box-shadow: 0 2px 6px color-mix(in srgb, var(--svc) 45%, transparent);
+}
+.shopTagHit {
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.34);
+}
+.shopOld {
+  font-size: 8px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration: line-through;
+  margin-right: 4px;
+}
 .shopMeta {
-  padding: 7px 8px;
+  padding: 6px 8px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
   flex: 1;
   justify-content: center;
+}
+/* In fill mode (modal) the frame stretches tall — let the product photo grow
+   and keep the price row compact so cards read as real product cards, not stretched. */
+.frameFill .shopImg {
+  flex: 1;
+  height: auto;
+  min-height: 42px;
+}
+.frameFill .shopMeta {
+  flex: 0 0 auto;
+  justify-content: flex-start;
 }
 .shopBottom {
   display: flex;
@@ -317,31 +682,268 @@
   white-space: nowrap;
 }
 
-/* ---------- Portfolio ---------- */
-.filters {
+/* ---------- Catalog-vitrina (filter sidebar + product grid with SALE/NEW badges, no cart) ---------- */
+.catBody {
   display: flex;
-  gap: 6px;
-  margin-bottom: 11px;
-  flex-wrap: wrap;
+  gap: 9px;
+  flex: 1;
+  min-height: 0;
 }
-.filter {
-  padding: 4px 10px;
-  border-radius: 100px;
-  background: rgba(255, 255, 255, 0.08);
+.catAside {
+  width: 34%;
+  max-width: 88px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 9px 8px;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.catAsideTitle {
   font-size: 8px;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.62);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--svc);
 }
-.filterActive {
+.catGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.catOpt {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.catBox {
+  width: 9px;
+  height: 9px;
+  border-radius: 3px;
+  border: 1.5px solid color-mix(in srgb, var(--svc) 55%, transparent);
+  flex-shrink: 0;
+}
+.catBoxOn {
   background: var(--svc);
+  border-color: var(--svc);
+}
+.catBar {
+  height: 5px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.14);
+}
+.catPriceRow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.catMini {
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.1);
+}
+.catSlider {
+  position: relative;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.12);
+}
+.catSliderFill {
+  position: absolute;
+  left: 12%;
+  right: 30%;
+  top: 0;
+  bottom: 0;
+  border-radius: 2px;
+  background: var(--svc);
+}
+.catSliderFill::after {
+  content: "";
+  position: absolute;
+  right: -3px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+  transform: translateY(-50%);
+  box-shadow: 0 0 0 2px var(--svc);
+}
+.catToggle {
+  position: relative;
+  width: 16px;
+  height: 9px;
+  border-radius: 100px;
+  background: var(--svc);
+  flex-shrink: 0;
+}
+.catToggleDot {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #fff;
+}
+.catGrid {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 1fr;
+  gap: 8px;
+}
+.catCard {
+  position: relative;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.catImg {
+  position: relative;
+  height: 34px;
+  background: color-mix(in srgb, var(--svc) 24%, transparent);
+}
+/* fill mode (modal): let the photo grow, keep the price row compact */
+.frameFill .catImg {
+  flex: 1;
+  height: auto;
+  min-height: 34px;
+}
+.catMeta {
+  padding: 6px 7px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+  justify-content: center;
+}
+.frameFill .catMeta {
+  flex: 0 0 auto;
+  justify-content: flex-start;
+}
+.catCardPrice {
+  font-size: 10px;
+  font-weight: 800;
   color: #fff;
 }
+.catTag {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  z-index: 1;
+  font-size: 6.5px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  padding: 2px 5px;
+  border-radius: 100px;
+  color: #fff;
+}
+.catTagSale {
+  background: var(--svc);
+  box-shadow: 0 2px 6px color-mix(in srgb, var(--svc) 45%, transparent);
+}
+.catTagNew {
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.34);
+}
+
+/* ---------- Portfolio (photographer homepage: cover + gallery + about/contacts) ---------- */
+/* Cover header — "обложка с именем и специализацией" */
+.pfCover {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 9px;
+  margin-bottom: 9px;
+  border-radius: 11px;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--svc) 34%, transparent),
+    color-mix(in srgb, var(--svc) 12%, transparent)
+  );
+  border: 1px solid color-mix(in srgb, var(--svc) 30%, transparent);
+  flex-shrink: 0;
+}
+.pfAvatar {
+  position: relative;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--svc) 52%, transparent);
+  border: 1px solid color-mix(in srgb, var(--svc) 78%, transparent);
+}
+/* avatar silhouette: head */
+.pfAvatar::before {
+  content: "";
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  width: 34%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translateX(-50%);
+}
+/* avatar silhouette: shoulders */
+.pfAvatar::after {
+  content: "";
+  position: absolute;
+  bottom: -20%;
+  left: 50%;
+  width: 66%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translateX(-50%);
+}
+.pfCoverCol {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.pfName {
+  font-size: 12px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+.pfRole {
+  font-size: 8.5px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.64);
+}
+.pfCoverCta {
+  flex-shrink: 0;
+  font-size: 8px;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+  padding: 4px 10px;
+  border-radius: 100px;
+  background: var(--svc);
+  box-shadow: 0 4px 10px color-mix(in srgb, var(--svc) 40%, transparent);
+}
+/* Gallery — "галерея работ (до 12)". Flexible 1fr rows so it fills the tall
+   modal gracefully (no dead space) while staying compact on the small card. */
 .pfGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 42px;
-  gap: 8px;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 7px;
   flex: 1;
+  min-height: 0;
 }
 .pfTile {
   position: relative;
@@ -374,6 +976,68 @@
 }
 .pfTileWide { grid-column: span 2; }
 .pfTileTall { grid-row: span 2; }
+/* "open project page" affordance on one work — signals each work is clickable
+   and opens its own detail page (заголовок, фото, ссылка на результат) */
+.pfTileCaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  padding: 12px 8px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 8px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.62), transparent);
+  white-space: nowrap;
+}
+
+/* About + contacts footer — "блок «о себе» и контакты" */
+.pfAbout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 9px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+.pfAboutCol {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.pfAboutLabel {
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--svc);
+}
+.pfAboutText {
+  height: 5px;
+  width: 84%;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.16);
+}
+.pfContacts {
+  display: flex;
+  gap: 7px;
+  flex-shrink: 0;
+}
+.pfContactIcon {
+  width: 15px;
+  height: 15px;
+  background: color-mix(in srgb, var(--svc) 46%, transparent);
+  flex-shrink: 0;
+}
+.pfMail { border-radius: 4px; }
+.pfPhone { border-radius: 50%; }
 
 /* ---------- Blog ---------- */
 .blogFeatured {
@@ -450,25 +1114,29 @@
   line-height: 1.2;
 }
 
-/* ---------- Services (price list + booking) ---------- */
+/* ---------- Services (price list + online booking) ---------- */
+/* price list — rows share the height so the list fills the tall modal (no void) */
 .svcList {
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 6px;
   flex: 1;
+  min-height: 0;
 }
 .svcRow {
+  flex: 1;
+  min-height: 24px;
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 5px 10px;
+  padding: 4px 11px;
   border-radius: 9px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.07);
 }
 .svcRowIcon {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   border-radius: 6px;
   background: color-mix(in srgb, var(--svc) 34%, transparent);
   flex-shrink: 0;
@@ -485,7 +1153,7 @@
 .svcTime {
   font-size: 8px;
   color: rgba(255, 255, 255, 0.5);
-  margin-top: 2px;
+  margin-top: 1px;
 }
 .svcPrice {
   font-size: 11px;
@@ -493,4 +1161,66 @@
   color: var(--svc);
   flex-shrink: 0;
   white-space: nowrap;
+}
+/* Онлайн-запись — свободные слоты + кнопка «Записаться онлайн» */
+.svcBook {
+  flex-shrink: 0;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+/* head + slots crowd the fixed 214px card — show them only in the tall modal */
+.svcBookHead {
+  display: none;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+.frameFill .svcBookHead {
+  display: flex;
+}
+.svcBookTitle {
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--svc);
+}
+/* date sits in the head only in the tall modal — keeps the small card clean */
+.svcBookDay {
+  display: none;
+  font-size: 8px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+}
+.frameFill .svcBookDay {
+  display: inline;
+}
+.svcSlots {
+  display: none;
+  gap: 6px;
+}
+.frameFill .svcSlots {
+  display: flex;
+}
+.svcSlot {
+  flex: 1;
+  text-align: center;
+  font-size: 8.5px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.72);
+  padding: 3.5px 0;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.svcSlotOn {
+  color: #fff;
+  background: var(--svc);
+  border-color: transparent;
+  box-shadow: 0 3px 8px color-mix(in srgb, var(--svc) 40%, transparent);
 }
