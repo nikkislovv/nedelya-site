@@ -11,17 +11,17 @@ type TLink = {
 };
 
 const SOCIALS: TLink[] = [
-  { Icon: TelegramIcon, href: "https://t.me/nedelya_site", label: "Telegram", external: true },
-  { Icon: WhatsappIcon, href: "https://wa.me/375000000000", label: "WhatsApp", external: true },
-  { Icon: ViberIcon, href: "viber://chat?number=%2B375000000000", label: "Viber", external: false },
+  { Icon: TelegramIcon, href: "https://t.me/kslv74", label: "Telegram", external: true },
+  { Icon: WhatsappIcon, href: "https://wa.me/375445628241", label: "WhatsApp", external: true },
+  { Icon: ViberIcon, href: "viber://chat?number=%2B375445628241", label: "Viber", external: false },
   { Icon: EmailIcon, href: "mailto:hello@nedelya.site", label: "Email", external: false },
 ];
 
 const CONTACTS: TLink[] = [
   { Icon: EmailIcon, href: "mailto:hello@nedelya.site", label: "hello@nedelya.site", external: false },
-  { Icon: TelegramIcon, href: "https://t.me/nedelya_site", label: "Telegram", external: true },
-  { Icon: ViberIcon, href: "viber://chat?number=%2B375000000000", label: "Viber", external: false },
-  { Icon: WhatsappIcon, href: "https://wa.me/375000000000", label: "WhatsApp", external: true },
+  { Icon: TelegramIcon, href: "https://t.me/kslv74", label: "Telegram", external: true },
+  { Icon: ViberIcon, href: "viber://chat?number=%2B375445628241", label: "Viber", external: false },
+  { Icon: WhatsappIcon, href: "https://wa.me/375445628241", label: "WhatsApp", external: true },
 ];
 
 const NAV = [

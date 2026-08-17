@@ -7,7 +7,7 @@ export type TMockupType =
   | "card"
   | "shop"
   | "portfolio"
-  | "blog"
+  | "catalog"
   | "services";
 
 function Nav({
@@ -58,9 +58,9 @@ const CartIcon = () => (
   </span>
 );
 
-function Frame({ children }: { children: ReactNode }) {
+function Frame({ children, fill }: { children: ReactNode; fill?: boolean }) {
   return (
-    <div className={classes.frame}>
+    <div className={`${classes.frame} ${fill ? classes.frameFill : ""}`}>
       <div className={classes.bar}>
         <span className={classes.dot} />
         <span className={classes.dot} />
@@ -73,61 +73,99 @@ function Frame({ children }: { children: ReactNode }) {
 }
 
 const LAYOUTS: Record<TMockupType, ReactNode> = {
-  // Лендинг — одна страница под один оффер (пример: онлайн-курс)
+  // Лендинг — одна длинная страница под один оффер: первый экран + секции
+  // (задача→решение, этапы, отзывы) + форма заявки. Пример: онлайн-курс.
   landing: (
     <>
-      <Nav label="Академия" links={["Программа", "Цена", "Отзывы"]} />
+      <Nav label="Студия" links={["Программы", "Отзывы", "Цена"]} />
+
+      {/* Первый экран: оффер + CTA + доверие */}
       <div className={classes.lHero}>
-        <div className={classes.lCol}>
-          <div className={classes.lTitle}>
-            Профессия
-            <br />
-            «Дизайнер»
-          </div>
-          <div className={classes.lSub}>Онлайн-курс с нуля за 4 месяца</div>
-          <div className={`${classes.cta} ${classes.ctaInline}`}>Записаться на курс</div>
-          <div className={classes.trust}>
+        <span className={classes.lEyebrow}>Идёт набор</span>
+        <div className={classes.lTitle}>
+          Сядьте на шпагат
+          <br />
+          за 8 недель
+        </div>
+        <div className={classes.lSub}>Студия растяжки для взрослых</div>
+        <div className={classes.lHeroFoot}>
+          <span className={classes.cta}>Записаться</span>
+          <span className={classes.trust}>
             <Stars />
-            <span className={classes.mutedTxt}>4,9 · 2 300 учеников</span>
+            <span className={classes.mutedTxt}>4,9 · 1 200 клиентов</span>
+          </span>
+        </div>
+      </div>
+
+      {/* Стек секций страницы */}
+      <div className={classes.lBands}>
+        {/* Этапы работы 1-2-3 */}
+        <div className={classes.lBand}>
+          <div className={classes.lSteps}>
+            {[
+              ["1", "Заявка"],
+              ["2", "Пробное"],
+              ["3", "Абонемент"],
+            ].map(([n, t]) => (
+              <div className={classes.lStep} key={n}>
+                <span className={classes.lStepNum}>{n}</span>
+                <span className={classes.lStepTxt}>{t}</span>
+              </div>
+            ))}
           </div>
         </div>
-        <div className={`${classes.lArt} ${classes.softBlock}`} />
-      </div>
-      <div className={classes.lFeatures}>
-        <span>Диплом</span>
-        <span>Практика</span>
-        <span>Рассрочка</span>
+
+        {/* Форма заявки — ключевая фича */}
+        <div className={classes.lForm}>
+          <span className={`${classes.lFormLabel} ${classes.lFillOnly}`}>
+            Оставьте заявку — перезвоним за 15 минут
+          </span>
+          <div className={classes.lFormRow}>
+            <span className={classes.lInput}>Ваше имя</span>
+            <span className={classes.lInput}>Телефон</span>
+            <span className={classes.lFormBtn}>→</span>
+          </div>
+        </div>
       </div>
     </>
   ),
 
-  // Визитка — имя, род деятельности, контакты, кнопка связи
+  // Визитка — многостраничный сайт компании: об, услуги, контакты + форма обратной связи
   card: (
     <>
-      <Nav label="ИП" links={["Обо мне", "Услуги", "Контакты"]} />
+      <Nav label="ИП" links={["О компании", "Услуги", "Контакты"]} />
       <div className={classes.cardHead}>
         <div className={`${classes.cardAvatar} ${classes.softBlock}`} />
         <div className={classes.cardHeadCol}>
           <div className={classes.cardName}>Иван Петров</div>
-          <div className={classes.cardRole}>Мастер-отделочник</div>
+          <div className={classes.cardRole}>Ремонт и отделка «под ключ»</div>
         </div>
       </div>
       <div className={classes.cardContacts}>
-        <div>
-          <span className={`${classes.cIcon} ${classes.cPhone}`} />Номер телефона
-        </div>
-        <div>
-          <span className={`${classes.cIcon} ${classes.cMail}`} />Email
-        </div>
-        <div>
-          <span className={`${classes.cIcon} ${classes.cPin}`} />Адрес и карта
-        </div>
+        <span className={classes.cardContact}>
+          <span className={`${classes.cIcon} ${classes.cPhone}`} />+375 29 …
+        </span>
+        <span className={classes.cardContact}>
+          <span className={`${classes.cIcon} ${classes.cMail}`} />почта
+        </span>
+        <span className={classes.cardContact}>
+          <span className={`${classes.cIcon} ${classes.cPin}`} />Минск
+        </span>
       </div>
-      <div className={`${classes.cta} ${classes.ctaFull}`}>Связаться</div>
+      {/* Форма обратной связи (имя, телефон/почта, сообщение) → на почту */}
+      <div className={classes.cardForm}>
+        <span className={classes.cardFormTitle}>Обратная связь</span>
+        <div className={classes.cardFormRow}>
+          <span className={classes.cardInput}>Имя</span>
+          <span className={classes.cardInput}>Телефон или почта</span>
+        </div>
+        <span className={`${classes.cardInput} ${classes.cardTextarea}`}>Сообщение…</span>
+        <div className={`${classes.cta} ${classes.ctaFull}`}>Отправить</div>
+      </div>
     </>
   ),
 
-  // Магазин — поиск + корзина + сетка товаров с ценами и кнопкой «Купить»
+  // Магазин — поиск + корзина + категории + сетка товаров с бейджами и кнопкой «Купить»
   shop: (
     <>
       <div className={classes.nav}>
@@ -135,15 +173,46 @@ const LAYOUTS: Record<TMockupType, ReactNode> = {
         <span className={classes.searchPill}>Поиск товаров</span>
         <CartIcon />
       </div>
+      <div className={classes.shopCats}>
+        {["Все", "Одежда", "Обувь", "Дом"].map((c, i) => (
+          <span
+            className={`${classes.shopCat} ${i === 0 ? classes.shopCatOn : ""}`}
+            key={c}
+          >
+            {c}
+          </span>
+        ))}
+      </div>
       <div className={classes.shopGrid}>
-        {["65", "29", "115", "42"].map((p, i) => (
+        {[
+          { p: "52", old: "65", b: "-20%" },
+          { p: "29", old: "", b: "Хит" },
+          { p: "115", old: "", b: "" },
+          { p: "42", old: "", b: "" },
+        ].map((it, i) => (
           <div className={classes.shopCard} key={i}>
-            <div className={classes.shopImg} />
+            <div className={classes.shopImg}>
+              {it.b && (
+                <span
+                  className={`${classes.shopTag} ${
+                    it.b === "Хит" ? classes.shopTagHit : classes.shopTagSale
+                  }`}
+                >
+                  {it.b}
+                </span>
+              )}
+            </div>
             <div className={classes.shopMeta}>
               <div className={classes.line} style={{ width: "78%" }} />
               <div className={classes.shopBottom}>
                 <span className={classes.shopPrice}>
-                  {p}
+                  {it.old && (
+                    <span className={classes.shopOld}>
+                      {it.old}
+                      <BynSign />
+                    </span>
+                  )}
+                  {it.p}
                   <BynSign />
                 </span>
                 <span className={classes.shopBuy}>Купить</span>
@@ -155,63 +224,109 @@ const LAYOUTS: Record<TMockupType, ReactNode> = {
     </>
   ),
 
-  // Портфолио — фотограф: фильтры-жанры + галерея снимков
+  // Портфолио — фотограф: обложка (имя + специализация), галерея работ, блок «о себе» и контакты
   portfolio: (
     <>
-      <div className={classes.nav}>
-        <span className={classes.navLogo}>Анна Ким</span>
-        <span className={classes.mutedTxt}>фотограф</span>
-      </div>
-      <div className={classes.filters}>
-        <span className={`${classes.filter} ${classes.filterActive}`}>Все</span>
-        <span className={classes.filter}>Портрет</span>
-        <span className={classes.filter}>Свадьба</span>
-        <span className={classes.filter}>Природа</span>
+      <div className={classes.pfCover}>
+        <span className={classes.pfAvatar} />
+        <div className={classes.pfCoverCol}>
+          <span className={classes.pfName}>Анна Ким</span>
+          <span className={classes.pfRole}>фотограф</span>
+        </div>
+        <span className={classes.pfCoverCta}>Связаться</span>
       </div>
       <div className={classes.pfGrid}>
         <div className={`${classes.pfTile} ${classes.pfTileTall}`} />
-        <div className={`${classes.pfTile} ${classes.pfTileWide}`} />
+        <div className={`${classes.pfTile} ${classes.pfTileWide}`}>
+          <span className={classes.pfTileCaption}>Открыть проект →</span>
+        </div>
         <div className={classes.pfTile} />
         <div className={classes.pfTile} />
         <div className={`${classes.pfTile} ${classes.pfTileWide}`} />
         <div className={classes.pfTile} />
       </div>
-    </>
-  ),
-
-  // Блог — кулинарный: поиск + статья с датой и временем чтения + лента
-  blog: (
-    <>
-      <div className={classes.nav}>
-        <span className={classes.navLogo}>Рецепты</span>
-        <span className={classes.searchPill}>Поиск рецептов</span>
-      </div>
-      <div className={classes.blogFeatured}>
-        <div className={classes.blogFeatThumb} />
-        <div className={classes.blogCol}>
-          <span className={classes.blogTag}>РЕЦЕПТ</span>
-          <div className={classes.blogTitle}>Паста карбонара за 15 минут</div>
-          <div className={classes.blogMeta}>
-            <span className={classes.mutedTxt}>12 июля</span>
-            <span className={classes.blogRead}>5 мин</span>
-          </div>
+      <div className={classes.pfAbout}>
+        <div className={classes.pfAboutCol}>
+          <span className={classes.pfAboutLabel}>О себе</span>
+          <span className={classes.pfAboutText} />
+        </div>
+        <div className={classes.pfContacts}>
+          <span className={`${classes.pfContactIcon} ${classes.pfMail}`} />
+          <span className={`${classes.pfContactIcon} ${classes.pfPhone}`} />
         </div>
       </div>
-      <div className={classes.blogList}>
-        {["Домашний хлеб без замеса", "5 идей для завтрака"].map((t) => (
-          <div className={classes.blogRow} key={t}>
-            <div className={classes.blogThumb} />
-            <div className={classes.blogCol}>
-              <div className={classes.blogRowTitle}>{t}</div>
-              <span className={classes.mutedTxt}>3 мин чтения</span>
+    </>
+  ),
+
+  // Каталог-витрина — фильтр-сайдбар + сетка товаров с бейджами, без корзины
+  catalog: (
+    <>
+      <div className={classes.nav}>
+        <span className={classes.navLogo}>Витрина</span>
+        <span className={classes.searchPill}>Поиск по каталогу</span>
+      </div>
+      <div className={classes.catBody}>
+        <div className={classes.catAside}>
+          <span className={classes.catAsideTitle}>Фильтры</span>
+          <div className={classes.catGroup}>
+            {[
+              { w: "82%", on: true },
+              { w: "64%", on: false },
+              { w: "73%", on: false },
+            ].map((o, i) => (
+              <span className={classes.catOpt} key={i}>
+                <span className={`${classes.catBox} ${o.on ? classes.catBoxOn : ""}`} />
+                <span className={classes.catBar} style={{ width: o.w }} />
+              </span>
+            ))}
+          </div>
+          <div className={classes.catPriceRow}>
+            <span className={classes.catMini} style={{ width: "42%" }} />
+            <div className={classes.catSlider}>
+              <span className={classes.catSliderFill} />
             </div>
           </div>
-        ))}
+          <span className={classes.catOpt}>
+            <span className={classes.catToggle}>
+              <span className={classes.catToggleDot} />
+            </span>
+            <span className={classes.catBar} style={{ width: "58%" }} />
+          </span>
+        </div>
+        <div className={classes.catGrid}>
+          {[
+            { p: "65", b: "SALE" },
+            { p: "29", b: "NEW" },
+            { p: "115", b: "" },
+            { p: "42", b: "" },
+          ].map((it, i) => (
+            <div className={classes.catCard} key={i}>
+              <div className={classes.catImg}>
+                {it.b && (
+                  <span
+                    className={`${classes.catTag} ${
+                      it.b === "SALE" ? classes.catTagSale : classes.catTagNew
+                    }`}
+                  >
+                    {it.b}
+                  </span>
+                )}
+              </div>
+              <div className={classes.catMeta}>
+                <div className={classes.line} style={{ width: "76%" }} />
+                <span className={classes.catCardPrice}>
+                  {it.p}
+                  <BynSign />
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </>
   ),
 
-  // Сайт услуг — прайс с длительностью и ценой + кнопка «Записаться»
+  // Сайт услуг — прайс + онлайн-запись: выбор времени (слоты) + кнопка «Записаться онлайн»
   services: (
     <>
       <Nav label="Услуги" links={["Услуги", "Цены", "Отзывы"]} />
@@ -233,13 +348,30 @@ const LAYOUTS: Record<TMockupType, ReactNode> = {
             </span>
           </div>
         ))}
+      </div>
+      {/* Онлайн-запись — выбор свободного времени */}
+      <div className={classes.svcBook}>
+        <div className={classes.svcBookHead}>
+          <span className={classes.svcBookTitle}>Онлайн-запись</span>
+          <span className={classes.svcBookDay}>Ср, 14 авг</span>
+        </div>
+        <div className={classes.svcSlots}>
+          {["10:00", "12:30", "15:00", "17:30"].map((t, i) => (
+            <span
+              className={`${classes.svcSlot} ${i === 1 ? classes.svcSlotOn : ""}`}
+              key={t}
+            >
+              {t}
+            </span>
+          ))}
+        </div>
         <div className={`${classes.cta} ${classes.ctaFull}`}>Записаться онлайн</div>
       </div>
     </>
   ),
 };
 
-export function ServiceMockup({ type }: { type: TMockupType }) {
-  return <Frame>{LAYOUTS[type]}</Frame>;
+export function ServiceMockup({ type, fill }: { type: TMockupType; fill?: boolean }) {
+  return <Frame fill={fill}>{LAYOUTS[type]}</Frame>;
 }
 ServiceMockup.displayName = "ServiceMockup";

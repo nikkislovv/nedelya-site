@@ -29,11 +29,6 @@ export function ServiceModal({ service, onClose }: IServiceModalProps) {
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const total = service.timing.reduce((sum, t) => {
-    const n = parseInt(t.value, 10);
-    return Number.isNaN(n) ? sum : sum + n;
-  }, 0);
-
   return (
     <div
       className={classes.overlay}
@@ -57,7 +52,7 @@ export function ServiceModal({ service, onClose }: IServiceModalProps) {
             <h3 className={classes.name}>{service.name}</h3>
             <p className={classes.desc}>{service.description}</p>
             <div className={classes.mockupHolder}>
-              <ServiceMockup type={service.mockup} />
+              <ServiceMockup type={service.mockup} fill />
             </div>
           </div>
 
@@ -85,26 +80,46 @@ export function ServiceModal({ service, onClose }: IServiceModalProps) {
             </div>
 
             <div>
-              <div className={classes.blockTitle}>Сроки</div>
-              <div className={classes.timing}>
-                {service.timing.map((t) => (
-                  <div className={classes.timingRow} key={t.label}>
-                    <span className={classes.timingLabel}>{t.label}</span>
-                    <span className={classes.timingVal}>{t.value}</span>
-                  </div>
-                ))}
-                <div className={classes.total}>
-                  <span>Итого</span>
-                  <span>{total ? `~${total} дней` : service.timeline}</span>
-                </div>
-              </div>
-            </div>
-
-            <div>
               <div className={classes.blockTitle}>Кому подходит</div>
               <p className={classes.desc} style={{ margin: 0 }}>
                 {service.idealFor}
               </p>
+            </div>
+
+            <div className={classes.gift}>
+              <span className={classes.giftIcon}>
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M20 12v7a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-7"
+                    stroke="currentColor"
+                    strokeWidth="1.7"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M21 8.5H3V12h18V8.5Z"
+                    stroke="currentColor"
+                    strokeWidth="1.7"
+                    strokeLinejoin="round"
+                  />
+                  <path d="M12 8.5V20" stroke="currentColor" strokeWidth="1.7" />
+                  <path
+                    d="M12 8.5S10.7 4.5 8.6 4.5a2 2 0 1 0 0 4H12Zm0 0s1.3-4 3.4-4a2 2 0 1 1 0 4H12Z"
+                    stroke="currentColor"
+                    strokeWidth="1.7"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+              <div className={classes.giftBody}>
+                <div className={classes.giftHeading}>
+                  Полгода хостинга — <span className={classes.giftAccent}>в подарок</span>
+                </div>
+                <p className={classes.giftText}>
+                  Публикуем сайт и первые 6&nbsp;месяцев держим его онлайн за наш
+                  счёт — дальше по желанию.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -116,7 +131,6 @@ export function ServiceModal({ service, onClose }: IServiceModalProps) {
               {service.price}
               <BynSign />
             </span>
-            <span className={classes.priceNote}>Фикс-цена в договоре · 1 цикл правок включён</span>
           </div>
           <button className={classes.cta} onClick={goToContact}>
             Обсудить проект →

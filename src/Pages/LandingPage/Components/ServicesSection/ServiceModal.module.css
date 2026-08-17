@@ -135,7 +135,10 @@
   margin-bottom: 22px;
 }
 .mockupHolder {
-  margin-top: 8px;
+  margin-top: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .right {
@@ -247,6 +250,94 @@
   border-top: 1px solid var(--border-soft);
 }
 
+/* free-hosting value-prop callout — accent-themed via --svc */
+.gift {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: auto;
+  padding: 15px 17px;
+  border-radius: var(--radius-md);
+  border: 1px solid color-mix(in srgb, var(--svc) 32%, transparent);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--svc) 16%, transparent) 0%,
+    color-mix(in srgb, var(--svc) 6%, transparent) 52%,
+    rgba(0, 0, 0, 0.16) 100%
+  );
+  box-shadow:
+    0 10px 26px color-mix(in srgb, var(--svc) 15%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+/* soft accent glow in the corner for depth */
+.gift::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -8%;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--svc) 28%, transparent),
+    transparent 68%
+  );
+  pointer-events: none;
+}
+.giftIcon {
+  position: relative;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    150deg,
+    color-mix(in srgb, var(--svc) 72%, #fff 28%) 0%,
+    var(--svc) 52%,
+    color-mix(in srgb, var(--svc) 66%, #000 34%) 100%
+  );
+  box-shadow:
+    0 10px 20px color-mix(in srgb, var(--svc) 40%, transparent),
+    inset 0 2px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -5px 12px rgba(0, 0, 0, 0.16);
+}
+.giftIcon svg {
+  width: 24px;
+  height: 24px;
+  color: #fff;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.22));
+}
+.giftBody {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.giftHeading {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--text-main);
+}
+.giftAccent {
+  color: var(--svc);
+  white-space: nowrap;
+}
+.giftText {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--text-sec);
+}
+
 .footer {
   display: flex;
   align-items: center;
@@ -313,7 +404,7 @@
     padding: 28px 20px;
   }
   .mockupHolder {
-    order: -1;
+    margin-top: 20px;
   }
   .footer {
     padding: 18px 20px;
