@@ -89,13 +89,13 @@ export default function PrivacyPage() {
         <p>
           Вы вправе запросить доступ к своим данным, их исправление или удаление. Для этого свяжитесь
           с нами по адресу:&nbsp;
-          <a href="mailto:hello@nedelya.site">hello@nedelya.site</a>.
+          <a href="mailto:nedelya.site7@gmail.com">nedelya.site7@gmail.com</a>.
         </p>
 
         <h2>7. Контактная информация</h2>
         <p>
           По всем вопросам, связанным с обработкой персональных данных, обращайтесь:
-          <br />Email: <a href="mailto:hello@nedelya.site">hello@nedelya.site</a>
+          <br />Email: <a href="mailto:nedelya.site7@gmail.com">nedelya.site7@gmail.com</a>
           <br />Telegram: <a href="https://t.me/nedelya_site">@nedelya_site</a>
         </p>
 

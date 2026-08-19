@@ -21,7 +21,7 @@ const CONTACTS = [
   { Icon: TelegramIcon, label: "Telegram", value: "@kslv74", href: "https://t.me/kslv74", external: true },
   { Icon: ViberIcon, label: "Viber", value: "+375 44 562-82-41", href: "viber://chat?number=%2B375445628241", external: false },
   { Icon: WhatsappIcon, label: "WhatsApp", value: "+375 44 562-82-41", href: "https://wa.me/375445628241", external: true },
-  { Icon: EmailIcon, label: "Email", value: "hello@nedelya.site", href: "mailto:hello@nedelya.site", external: false },
+  { Icon: EmailIcon, label: "Email", value: "nedelya.site7@gmail.com", href: "mailto:nedelya.site7@gmail.com", external: false },
 ] as const;
 
 const TRUST = ["Оценка бесплатно", "Ответ за 24 часа", "Без спама и звонков"];
