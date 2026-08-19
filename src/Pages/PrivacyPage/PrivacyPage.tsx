@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
+import { Seo } from "../../Components/Seo/Seo";
 import classes from "./PrivacyPage.module.css";
 
 export default function PrivacyPage() {
@@ -12,6 +13,12 @@ export default function PrivacyPage() {
 
   return (
     <>
+      <Seo
+        title="Политика конфиденциальности — Nedelya.site"
+        description="Как Nedelya.site обрабатывает и защищает персональные данные пользователей: какие данные собираем, зачем, сколько храним и как их удалить."
+        path="/privacy"
+      />
+
       {/* Mini-header */}
       <header className={classes.miniHeader}>
         <div className={classes.miniHeaderInner}>
@@ -40,7 +47,7 @@ export default function PrivacyPage() {
         <p>
           Настоящая Политика конфиденциальности определяет порядок обработки и защиты персональных
           данных пользователей сайта&nbsp;
-          <a href="https://nedelya.site">nedelya.site</a>.
+          <a href="https://nedelya-site.net.by">nedelya-site.net.by</a>.
         </p>
         <p>
           Используя сайт, вы соглашаетесь с условиями настоящей Политики. Если вы не согласны с

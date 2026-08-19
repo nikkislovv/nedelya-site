@@ -55,7 +55,7 @@ export function Header() {
       <div className={clsx(classes.card, menuOpen && classes.cardOpen)}>
         <div className={classes.row}>
           {/* Logo */}
-          <a href="#" className={classes.logo} onClick={close}>
+          <a href="#hero" className={classes.logo} onClick={close} aria-label="Nedelya.site — на главную">
             <LogoMark className={classes.logoImg} />
             <span className={classes.logoName}>
               Nedelya<em>.site</em>

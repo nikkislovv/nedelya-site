@@ -120,11 +120,12 @@ export function CafeConcept() {
       <section className={c.hero}>
         <div>
           <span className={c.eyebrow}>Кофейня · кондитерская</span>
-          <h1 className={c.h1}>
+          {/* макет-концепт: не заголовок страницы, чтобы не плодить h1 для поиска */}
+          <p className={c.h1}>
             Кофе и десерты
             <br />
             <span>ручной работы</span>
-          </h1>
+          </p>
           <p className={c.lead}>
             Своя обжарка, свежая выпечка каждое утро и авторские торты на заказ. Уютно у нас — вкусно
             у вас дома.

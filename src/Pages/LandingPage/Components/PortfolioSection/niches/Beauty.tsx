@@ -122,10 +122,11 @@ export function BeautyConcept() {
       <section className={b.hero}>
         <div>
           <span className={b.eyebrow}>Салон красоты · Минск</span>
-          <h1 className={b.h1}>
+          {/* макет-концепт: не заголовок страницы, чтобы не плодить h1 для поиска */}
+          <p className={b.h1}>
             Ваша красота —<br />
             наше <em className={b.goldText}>искусство</em>
-          </h1>
+          </p>
           <p className={b.lead}>
             Стрижки, окрашивание, уход и маникюр у мастеров, влюблённых в детали. Запишитесь онлайн за
             минуту.

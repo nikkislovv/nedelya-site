@@ -87,15 +87,16 @@ export function HeroSection() {
         </SlideIn>
 
         <div className={classes.grid}>
-          {/* Headings */}
+          {/* Headings — единственный h1 страницы, содержит обе строки:
+              «Запустим ваш сайт за 5 дней — от 600 BYN» */}
           <div className={classes.headings}>
             <SlideIn direction="left" duration={900}>
-              <h1 className={classes.title}>Запустим ваш сайт</h1>
-            </SlideIn>
-            <SlideIn direction="left" delay={150} duration={900}>
-              <p className={classes.subtitle}>
-                за 5 дней — <em>от&nbsp;600<BynSign /></em>
-              </p>
+              <h1 className={classes.heading}>
+                <span className={classes.title}>Запустим ваш сайт</span>
+                <span className={classes.subtitle}>
+                  за 5 дней — <em>от&nbsp;600<BynSign /></em>
+                </span>
+              </h1>
             </SlideIn>
           </div>
 

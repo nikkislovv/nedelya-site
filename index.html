@@ -1,17 +1,305 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="icon" type="image/svg+xml" href="/src/imports/logo_embedded_transparent.svg" />
-      <title>Outsource</title>
-      <style>html, body { height: 100%; margin: 0; } #root { height: 100%; }</style>
-    </head>
+    <!-- ===== Base SEO ===== -->
+    <title>Сайт под ключ за неделю от 600 BYN — разработка сайтов | Nedelya.site</title>
+    <meta
+      name="description"
+      content="Сайты под ключ за 5–7 дней: лендинг, визитка, интернет-магазин, витрина товаров. Фиксированная цена от 600 BYN, договор и 3 цикла правок. Оценка за 24 часа."
+    />
+    <link rel="canonical" href="https://nedelya-site.net.by/" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="author" content="Nedelya.site" />
+    <meta name="theme-color" content="#233044" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="geo.region" content="BY" />
+    <meta name="geo.placename" content="Минск" />
 
-    <body>
-      <div id="root"></div>
-      <script type="module" src="/src/main.tsx"></script>
-    </body>
-  </html>
-  
+    <!-- Верификация вебмастеров: вставьте свои коды после регистрации сайта -->
+    <!-- <meta name="yandex-verification" content="ВАШ_КОД_ЯНДЕКС_ВЕБМАСТЕР" /> -->
+    <!-- <meta name="google-site-verification" content="ВАШ_КОД_GOOGLE_SEARCH_CONSOLE" /> -->
+
+    <!-- ===== Open Graph (Telegram, VK, WhatsApp, Facebook) — текстовое превью, без картинки ===== -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Nedelya.site" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:url" content="https://nedelya-site.net.by/" />
+    <meta property="og:title" content="Сайт под ключ за неделю от 600 BYN — Nedelya.site" />
+    <meta
+      property="og:description"
+      content="Лендинги, сайты-визитки, интернет-магазины и витрины за 5–7 дней. Фиксированная цена, договор, 3 цикла правок. Бесплатная оценка за 24 часа."
+    />
+
+    <!-- ===== Twitter / X ===== -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Сайт под ключ за неделю от 600 BYN — Nedelya.site" />
+    <meta
+      name="twitter:description"
+      content="Лендинги, сайты-визитки, интернет-магазины и витрины за 5–7 дней. Фиксированная цена, договор, 3 цикла правок."
+    />
+
+    <!-- ===== Icons ===== -->
+    <link rel="icon" type="image/svg+xml" href="/src/imports/logo_embedded_transparent.svg" />
+    <link rel="apple-touch-icon" href="/src/imports/logo_embedded_transparent.svg" />
+
+    <!-- ===== Performance (Core Web Vitals) ===== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- =========================================================
+         Структурированные данные (Schema.org).
+         Читаются Google и Яндексом напрямую из HTML — без JS.
+         ВАЖНО: при изменении услуг/цен в src/.../services.ts
+         и вопросов в FaqSection.tsx — обновите блок ниже.
+         ========================================================= -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://nedelya-site.net.by/#website",
+            "url": "https://nedelya-site.net.by/",
+            "name": "Nedelya.site",
+            "description": "Разработка сайтов под ключ за 5–7 дней по фиксированной цене",
+            "inLanguage": "ru-RU",
+            "publisher": { "@id": "https://nedelya-site.net.by/#organization" }
+          },
+          {
+            "@type": "ProfessionalService",
+            "@id": "https://nedelya-site.net.by/#organization",
+            "name": "Nedelya.site",
+            "alternateName": "Неделя.сайт",
+            "url": "https://nedelya-site.net.by/",
+            "description": "Студия быстрой разработки сайтов: лендинги, сайты-визитки, интернет-магазины, витрины товаров и сайты услуг за 4–14 дней по фиксированной цене.",
+            "email": "hello@nedelya.site",
+            "telephone": "+375445628241",
+            "priceRange": "600–2100 BYN",
+            "currenciesAccepted": "BYN",
+            "areaServed": [
+              { "@type": "Country", "name": "Беларусь" },
+              { "@type": "Country", "name": "Россия" }
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "BY",
+              "addressLocality": "Минск"
+            },
+            "sameAs": ["https://t.me/kslv74", "https://wa.me/375445628241"],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "sales",
+              "email": "hello@nedelya.site",
+              "telephone": "+375445628241",
+              "availableLanguage": ["ru"]
+            },
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Разработка сайтов",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "priceCurrency": "BYN",
+                  "price": "600",
+                  "priceSpecification": {
+                    "@type": "PriceSpecification",
+                    "priceCurrency": "BYN",
+                    "minPrice": "600"
+                  },
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Лендинг",
+                    "serviceType": "Разработка лендинга",
+                    "description": "Одностраничный сайт под одну цель — продать продукт или собрать заявки. До 7 блоков, форма заявки, мобильная адаптация, публикация на вашем домене."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "priceCurrency": "BYN",
+                  "price": "600",
+                  "priceSpecification": {
+                    "@type": "PriceSpecification",
+                    "priceCurrency": "BYN",
+                    "minPrice": "600"
+                  },
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Сайт-визитка",
+                    "serviceType": "Разработка сайта-визитки",
+                    "description": "Небольшой сайт до 5 страниц: о компании, услуги, контакты. Форма обратной связи, мобильная адаптация, публикация на вашем домене."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "priceCurrency": "BYN",
+                  "price": "2100",
+                  "priceSpecification": {
+                    "@type": "PriceSpecification",
+                    "priceCurrency": "BYN",
+                    "minPrice": "2100"
+                  },
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Интернет-магазин",
+                    "serviceType": "Разработка интернет-магазина",
+                    "description": "Каталог с фильтрами и поиском, карточка товара, корзина и оформление заказа, личный кабинет покупателя и админка для управления товарами."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "priceCurrency": "BYN",
+                  "price": "600",
+                  "priceSpecification": {
+                    "@type": "PriceSpecification",
+                    "priceCurrency": "BYN",
+                    "minPrice": "600"
+                  },
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Сайт-портфолио",
+                    "serviceType": "Разработка сайта-портфолио",
+                    "description": "Сайт-галерея: сетка работ и отдельная страница проекта с описанием и фото. Для фрилансеров, фотографов и дизайн-студий."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "priceCurrency": "BYN",
+                  "price": "600",
+                  "priceSpecification": {
+                    "@type": "PriceSpecification",
+                    "priceCurrency": "BYN",
+                    "minPrice": "600"
+                  },
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Витрина товаров",
+                    "serviceType": "Разработка каталога товаров",
+                    "description": "Витрина каталога с фильтрами, поиском и админкой — без корзины и оплаты. Для шоурумов, оптовиков и каталогов без онлайн-продажи."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "priceCurrency": "BYN",
+                  "price": "600",
+                  "priceSpecification": {
+                    "@type": "PriceSpecification",
+                    "priceCurrency": "BYN",
+                    "minPrice": "600"
+                  },
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Сайт услуг",
+                    "serviceType": "Разработка сайта услуг",
+                    "description": "Многостраничный сайт для сервисного бизнеса: каталог услуг, цены, этапы работы, блоки доверия и формы заявки. Для клиник, салонов, сервиса и ремонта."
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://nedelya-site.net.by/#faq",
+            "inLanguage": "ru-RU",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Что если мне не понравится дизайн?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "3 цикла правок включены в стоимость каждого пакета. Дополнительные итерации — 159 Br за цикл. Наш опыт показывает, что первая версия дизайна устраивает в 90% случаев."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Какие материалы нужно подготовить?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Нам понадобятся: текст для сайта, логотип (если есть) и фотографии. Если материалов нет — поможем с текстом и подберём стоковые изображения за дополнительную стоимость."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Вы делаете хостинг и поддержку?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Да, опционально. Хостинг и деплой — 49 Br/мес. Поддержка и правки — 159 Br/мес. Можно взять только нужные услуги или отказаться от них."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Можно ли потом доработать сайт?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Да — разовые доработки или ежемесячная поддержка. Также передаём доступы к CMS или исходному коду, чтобы вы могли работать с сайтом самостоятельно."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "А если мне нужно что-то сложнее?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Оценим индивидуально за 24 часа — просто оставьте заявку и опишите задачу. Если проект выходит за рамки стандартных форматов, подготовим отдельное коммерческое предложение."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+
+    <style>
+      html, body { height: 100%; margin: 0; }
+      #root { height: 100%; }
+      /* Текстовый фолбэк для поисковых роботов без JS */
+      .nd-noscript { max-width: 760px; margin: 0 auto; padding: 40px 20px; font-family: system-ui, sans-serif; color: #f1f4fa; }
+      .nd-noscript a { color: #ff9a6a; }
+    </style>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <noscript>
+      <div class="nd-noscript">
+        <h1>Сайт под ключ за 5 дней — от 600 BYN</h1>
+        <p>
+          Nedelya.site — быстрый запуск сайта для малого бизнеса, фрилансеров и небольших проектов.
+          Запускаем за счёт готовых шаблонов дизайна, проектных заготовок под типовые сайты и
+          процесса без долгого ТЗ.
+        </p>
+        <h2>Услуги и цены</h2>
+        <ul>
+          <li>Лендинг — от 600 BYN, ~7 дней</li>
+          <li>Сайт-визитка (до 5 страниц) — от 600 BYN, ~7 дней</li>
+          <li>Интернет-магазин (каталог, корзина, личный кабинет) — от 2 100 BYN, ~14 дней</li>
+          <li>Сайт-портфолио — от 600 BYN, ~7 дней</li>
+          <li>Витрина товаров с админкой — от 600 BYN, ~7 дней</li>
+          <li>Сайт услуг — от 600 BYN, ~7 дней</li>
+        </ul>
+        <h2>Контакты</h2>
+        <p>
+          Telegram: <a href="https://t.me/kslv74">@kslv74</a><br />
+          WhatsApp / Viber: +375 44 562-82-41<br />
+          E-mail: <a href="mailto:hello@nedelya.site">hello@nedelya.site</a>
+        </p>
+        <p>Оценка бесплатно, ответ в течение 24 часов. Для просмотра сайта включите JavaScript.</p>
+      </div>
+    </noscript>
+
+    <script type="module" src="/src/main.tsx"></script>
+
+    <!-- ===== Яндекс.Метрика — раскомментируйте и подставьте номер счётчика =====
+    <script type="text/javascript">
+      (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+      (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+      ym(НОМЕР_СЧЁТЧИКА, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/НОМЕР_СЧЁТЧИКА" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    ========================================================================== -->
+  </body>
+</html>

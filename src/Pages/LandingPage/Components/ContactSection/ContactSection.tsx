@@ -98,7 +98,7 @@ export function ContactSection() {
     setStatus("loading");
     try {
       const data = new FormData();
-      data.append("access_key", "43466d75-a865-4363-9434-7d93a2c7ddad");
+      data.append("access_key", "b7c0e0a5-d14d-4f9e-8048-e400f522abdc");
       data.append("cc_email", "nikitakislov368@gmail.com,nikvikprg@gmail.com");
       data.append("subject", `Новая заявка от ${form.name} — ${form.projectType}`);
       data.append("name", form.name);

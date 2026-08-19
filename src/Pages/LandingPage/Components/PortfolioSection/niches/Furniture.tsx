@@ -128,11 +128,12 @@ export function FurnitureConcept() {
       <section className={f.hero}>
         <div>
           <span className={f.eyebrow}>Мебель на заказ</span>
-          <h1 className={f.h1}>
+          {/* макет-концепт: не заголовок страницы, чтобы не плодить h1 для поиска */}
+          <p className={f.h1}>
             Мебель, которую
             <br />
             <em>передают</em> по наследству
-          </h1>
+          </p>
           <p className={f.lead}>
             Проектируем и изготавливаем корпусную мебель из массива под ваш интерьер — от эскиза до
             монтажа за 3–4 недели.

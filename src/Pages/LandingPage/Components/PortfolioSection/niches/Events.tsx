@@ -159,11 +159,12 @@ export function EventsConcept() {
         <Floral className={`${e.ornament} ${e.ornamentTL}`} />
         <Floral className={`${e.ornament} ${e.ornamentBR}`} />
         <span className={e.eyebrow}>Организация торжеств · Минск</span>
-        <h1 className={e.h1}>
+        {/* макет-концепт: не заголовок страницы, чтобы не плодить h1 для поиска */}
+        <p className={e.h1}>
           Праздник, который
           <br />
           запомнят <em>навсегда</em>
-        </h1>
+        </p>
         <p className={e.lead}>
           Свадьбы, юбилеи и корпоративы под ключ: концепция, площадка, décor, ведущий и программа —
           всё в одних руках.

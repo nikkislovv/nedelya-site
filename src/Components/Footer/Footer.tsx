@@ -44,7 +44,7 @@ export function Footer() {
         <div className={classes.grid}>
           {/* Brand */}
           <div className={classes.brand}>
-            <a href="#" className={classes.logo}>
+            <a href="#hero" className={classes.logo} aria-label="Nedelya.site — на главную">
               <LogoMark className={classes.logoImg} />
               <span className={classes.logoName}>
                 Nedelya<em>.site</em>

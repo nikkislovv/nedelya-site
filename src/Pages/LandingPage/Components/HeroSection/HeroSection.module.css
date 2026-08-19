@@ -86,7 +86,14 @@
   margin: 64px 0 14px;
 }
 
+/* h1 объединяет обе строки; визуальные стили живут на вложенных span */
+.heading {
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
 .title {
+  display: block;
   font-family: var(--font-display);
   font-size: clamp(32px, 3.9vw, 52px);
   font-weight: 800;
@@ -95,6 +102,7 @@
   color: var(--text-main);
 }
 .subtitle {
+  display: block;
   font-family: var(--font-display);
   font-size: clamp(24px, 2.9vw, 40px);
   font-weight: 400;

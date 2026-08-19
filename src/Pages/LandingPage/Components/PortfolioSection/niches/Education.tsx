@@ -115,9 +115,10 @@ export function EducationConcept() {
       <section className={ed.hero}>
         <div>
           <span className={ed.eyebrow}>Онлайн-школа · Минск</span>
-          <h1 className={ed.h1}>
+          {/* макет-концепт: не заголовок страницы, чтобы не плодить h1 для поиска */}
+          <p className={ed.h1}>
             Освойте профессию <span>с нуля</span>
-          </h1>
+          </p>
           <p className={ed.lead}>
             Живые занятия, практика на реальных проектах и наставник рядом. Учитесь в своём темпе — из
             любого города.
