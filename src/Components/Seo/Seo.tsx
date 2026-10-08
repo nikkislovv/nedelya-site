@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 /** Канонический адрес сайта — единственное место, где он задаётся в JS. */
-export const SITE_URL = "https://nedelya-site.net.by";
+export const SITE_URL = "https://nedelya-site.by";
 
 interface ISeoProps {
   /** <title> страницы — до ~65 символов */

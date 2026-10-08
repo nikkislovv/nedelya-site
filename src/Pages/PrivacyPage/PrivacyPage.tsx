@@ -47,7 +47,7 @@ export default function PrivacyPage() {
         <p>
           Настоящая Политика конфиденциальности определяет порядок обработки и защиты персональных
           данных пользователей сайта&nbsp;
-          <a href="https://nedelya-site.net.by">nedelya-site.net.by</a>.
+          <a href="https://nedelya-site.by">nedelya-site.by</a>.
         </p>
         <p>
           Используя сайт, вы соглашаетесь с условиями настоящей Политики. Если вы не согласны с

@@ -5,4 +5,4 @@ Disallow: /assets/*.map$
 # Убираем метки рекламных кампаний из индекса (Яндекс)
 Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content&yclid&gclid&fbclid
 
-Sitemap: https://nedelya-site.net.by/sitemap.xml
+Sitemap: https://nedelya-site.by/sitemap.xml

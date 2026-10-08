@@ -1,1 +1,1 @@
-https://nedelya-site.net.by/
+https://nedelya-site.by/
