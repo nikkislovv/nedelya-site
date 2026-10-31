@@ -120,6 +120,11 @@
   justify-content: space-between;
   gap: 16px;
 }
+.legal {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
 .copy {
   font-size: 13px;
   color: rgba(255, 255, 255, 0.32);
