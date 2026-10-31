@@ -21,7 +21,7 @@ const CONTACTS = [
   { Icon: TelegramIcon, label: "Telegram", value: "@kslv74", href: "https://t.me/kslv74", external: true },
   { Icon: ViberIcon, label: "Viber", value: "+375 44 562-82-41", href: "viber://chat?number=%2B375445628241", external: false },
   { Icon: WhatsappIcon, label: "WhatsApp", value: "+375 44 562-82-41", href: "https://wa.me/375445628241", external: true },
-  { Icon: EmailIcon, label: "Email", value: "nikitakislov368@gmail.com", href: "mailto:nikitakislov368@gmail.com", external: false },
+  { Icon: EmailIcon, label: "Email", value: "info@nedelya-site.by", href: "mailto:info@nedelya-site.by", external: false },
 ] as const;
 
 const TRUST = ["Оценка бесплатно", "Ответ за 24 часа", "Без спама и звонков"];
@@ -99,7 +99,6 @@ export function ContactSection() {
     try {
       const data = new FormData();
       data.append("access_key", "43466d75-a865-4363-9434-7d93a2c7ddad");
-      data.append("cc_email", "nikitakislov368@gmail.com,nikvikprg@gmail.com");
       data.append("subject", `Новая заявка от ${form.name} — ${form.projectType}`);
       data.append("name", form.name);
       data.append("email", form.email);

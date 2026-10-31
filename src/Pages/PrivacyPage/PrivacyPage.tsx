@@ -87,13 +87,13 @@ export default function PrivacyPage() {
         <p>
           Вы вправе запросить доступ к своим данным, их исправление или удаление. Для этого свяжитесь
           с нами по адресу:&nbsp;
-          <a href="mailto:nikitakislov368@gmail.com">nikitakislov368@gmail.com</a>.
+          <a href="mailto:info@nedelya-site.by">info@nedelya-site.by</a>.
         </p>
 
         <h2>7. Контактная информация</h2>
         <p>
           По всем вопросам, связанным с обработкой персональных данных, обращайтесь:
-          <br />Email: <a href="mailto:nikitakislov368@gmail.com">nikitakislov368@gmail.com</a>
+          <br />Email: <a href="mailto:info@nedelya-site.by">info@nedelya-site.by</a>
           <br />Телефон: <a href="tel:+375445628241">+375 44 562-82-41</a>
           <br />Telegram: <a href="https://t.me/kslv74">@kslv74</a>
         </p>
