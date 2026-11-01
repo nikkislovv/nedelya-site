@@ -65,7 +65,7 @@ function Frame({ children, fill }: { children: ReactNode; fill?: boolean }) {
         <span className={classes.dot} />
         <span className={classes.dot} />
         <span className={classes.dot} />
-        <span className={classes.url}>nedelya.site</span>
+        <span className={classes.url}>nedelya-site.by</span>
       </div>
       <div className={classes.screen}>{children}</div>
     </div>
