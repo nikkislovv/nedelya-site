@@ -41,13 +41,18 @@ export default function PrivacyPage() {
         </button>
 
         <h1 className={classes.title}>Политика конфиденциальности</h1>
-        <p className={classes.date}>Последнее обновление: апрель 2026</p>
+        <p className={classes.date}>Последнее обновление: октябрь 2026</p>
 
         <h2>1. Общие положения</h2>
         <p>
           Настоящая Политика конфиденциальности определяет порядок обработки и защиты персональных
           данных пользователей сайта&nbsp;
           <a href="https://nedelya-site.by">nedelya-site.by</a>.
+        </p>
+        <p>
+          Оператор персональных данных — Кислов Никита Андреевич, плательщик налога на
+          профессиональный доход, УНП AE8565934. Адрес: г.&nbsp;Минск, ул.&nbsp;Льва Сапеги,
+          д.&nbsp;5, кв.&nbsp;74.
         </p>
         <p>
           Используя сайт, вы соглашаетесь с условиями настоящей Политики. Если вы не согласны с
@@ -89,14 +94,15 @@ export default function PrivacyPage() {
         <p>
           Вы вправе запросить доступ к своим данным, их исправление или удаление. Для этого свяжитесь
           с нами по адресу:&nbsp;
-          <a href="mailto:nedelya.site7@gmail.com">nedelya.site7@gmail.com</a>.
+          <a href="mailto:info@nedelya-site.by">info@nedelya-site.by</a>.
         </p>
 
         <h2>7. Контактная информация</h2>
         <p>
           По всем вопросам, связанным с обработкой персональных данных, обращайтесь:
-          <br />Email: <a href="mailto:nedelya.site7@gmail.com">nedelya.site7@gmail.com</a>
-          <br />Telegram: <a href="https://t.me/nedelya_site">@nedelya_site</a>
+          <br />Email: <a href="mailto:info@nedelya-site.by">info@nedelya-site.by</a>
+          <br />Телефон: <a href="tel:+375445628241">+375 44 562-82-41</a>
+          <br />Telegram: <a href="https://t.me/kslv74">@kslv74</a>
         </p>
 
         <h2>8. Изменения в Политике</h2>
