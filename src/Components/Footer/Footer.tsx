@@ -1,6 +1,7 @@
 import type { ComponentType } from "react";
 import { LogoMark } from "../Logo/LogoMark";
 import { TelegramIcon, WhatsappIcon, ViberIcon, EmailIcon } from "../BrandIcons/BrandIcons";
+import { openCookieSettings } from "../CookieBanner/consent";
 import classes from "./Footer.module.css";
 
 type TLink = {
@@ -100,9 +101,14 @@ export function Footer() {
               Кислов Никита Андреевич · плательщик налога на профессиональный доход · УНП AE8565934
             </span>
           </div>
-          <a href="/privacy" className={classes.policy}>
-            Политика конфиденциальности
-          </a>
+          <div className={classes.policyLinks}>
+            <a href="/privacy" className={classes.policy}>
+              Политика конфиденциальности
+            </a>
+            <button type="button" className={classes.policyBtn} onClick={openCookieSettings}>
+              Настройки cookie
+            </button>
+          </div>
         </div>
       </div>
     </footer>

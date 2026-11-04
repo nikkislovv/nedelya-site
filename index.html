@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <!-- Google tag (GTM-P6LJ8J4W) -->
-    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-P6LJ8J4W"></script>
+    <!-- Google tag (GTM-P6LJ8J4W).
+         Consent Mode: аналитика выключена, пока посетитель не нажал «Принять» в cookie-баннере.
+         Ключ localStorage "nd-cookie-consent" — см. src/Components/CookieBanner/consent.ts -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      var ndConsent = 'denied';
+      try { if (localStorage.getItem('nd-cookie-consent') === 'granted') ndConsent = 'granted'; } catch (e) {}
+      gtag('consent', 'default', {
+        analytics_storage: ndConsent,
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied'
+      });
       gtag('js', new Date());
     </script>
+    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-P6LJ8J4W"></script>
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
